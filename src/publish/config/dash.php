@@ -16,15 +16,7 @@ return [
      * DARK MODE Style with  on , off
      * @param string
      */
-    'DARK_MODE' => env('DASH_DARK_MODE', 'off'),
-
-
-    /**
-     * CHECK  VERSION from phpdash.com with  on , off
-     * @param string
-     */
-    'CHECK_VERSION_MODE' => env('CHECK_VERSION_MODE', 'off'),
-
+    'DARK_MODE' => env('DASH_DARK_MODE', 'on'),
 
     /**
      * App PATH IN DASHBOARD dont leave this is empty default is dash
@@ -33,16 +25,10 @@ return [
     'DASHBOARD_PATH' => env('DASHBOARD_PATH', 'dash'),
 
     /**
-     * The key to getting updates
-     * @param string
-     */
-    'DASH_ACCESS_KEY' => env('DASH_ACCESS_KEY', ''),
-
-    /**
      * DASHBOARD ICON you can put url or leave it empty
      * @param string
      */
-    'DASHBOARD_ICON' => env('APP_URL') . '/dashboard/assets/img/dash/PNG/dash.png',
+    'DASHBOARD_ICON' => env('APP_URL') . '/dashboard/assets/dash/images/dash/PNG/black.png',
 
     /**
      * APP LANGUAGES Availabil Default is ar|en
