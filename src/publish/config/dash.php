@@ -16,14 +16,14 @@ return [
      * DARK MODE Style with  on , off
      * @param string
      */
-    'DARK_MODE' => env('DASH_DARK_MODE', 'on'),
+    'DARK_MODE' => env('DASH_DARK_MODE', 'off'),
 
 
     /**
      * CHECK  VERSION from phpdash.com with  on , off
      * @param string
      */
-    'CHECK_VERSION_MODE' => env('CHECK_VERSION_MODE', 'on'),
+    'CHECK_VERSION_MODE' => env('CHECK_VERSION_MODE', 'off'),
 
 
     /**
@@ -82,9 +82,9 @@ return [
      * don't change anything here this is a default values for dash
      * @param functions
      */
-    'THEME_PATH'            => base_path('dash/src/resources/views'),
-    'LOCALE_PATH'           => base_path('dash/src/resources/lang'),
-    'DATATABLE_LOCALE_PATH' => base_path('dash/src/resources/lang'),
-    'ROUTE_PATH'            => base_path('dash/src/routes/routelist.php'),
+    'THEME_PATH'            => base_path('vendor/phpanonymous/dash/src/resources/views'),
+    'LOCALE_PATH'           => base_path('vendor/phpanonymous/dash/src/resources/lang'),
+    'DATATABLE_LOCALE_PATH' => base_path('vendor/phpanonymous/dash/src/resources/lang'),
+    'ROUTE_PATH'            => base_path('vendor/phpanonymous/dash/src/routes/routelist.php'),
 
 ];
