@@ -1,0 +1,31 @@
+<?php
+namespace {{namespace}};
+use Dash\Extras\Metrics\Average;
+
+class {{averagename}} extends Average{
+
+    /**
+     * calculate method is short to calc to using in value
+     * for more information about this visit https://phpdash.com/docs/1.x/Metrics#Value
+     * @return $this->average method
+     *
+     */
+      public function calc(){
+        return $this->average(YourModel::class,'id')
+       // ->bgClass('bg-success') change bar background color optional // bg-success , bg-info , bg-warning , bg-danger
+       // ->at('created_at') // optional
+       // ->column(3) // optional
+       // ->height('10') // change bar height optional // 0 to 100
+       // ->href(dash('resource/YourResourceOr Other Links'))
+       // ->icon('<i class="fa fa-users"></i>')// icon by fontawesome or other | optional
+       // ->title('Your Title') // optional
+       // ->subTitle('Your subTitle')// optional
+       //  ->textBody('Text In Body') // optional
+       // ->prefix('<i class="fa fa-user"></i> ')// add prefix before number or icon
+       // ->suffix('Your suffix') // optional add suffix after number
+       ;
+    }
+
+
+
+}

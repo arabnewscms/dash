@@ -1,0 +1,13 @@
+<?php
+namespace {{namespace}};
+use Dash\Policies\Policy;
+
+class {{name}} extends Policy {
+
+    /**
+	 * Resource Policy Name
+	 * @var string $resource
+	 */
+	protected $resource = '{{resource}}';
+
+}

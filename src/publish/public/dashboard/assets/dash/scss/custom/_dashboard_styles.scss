@@ -1,0 +1,1512 @@
+/* Start:: Sales Dashboard Styles */
+
+.main-card-icon {
+  inset-block-end: 0.75rem;
+  inset-inline-end: 1rem;
+  position: absolute;
+  padding: 0.75rem;
+  border-radius: $default-radius;
+}
+
+.timeline-main {
+  padding-inline-start: 1.77rem;
+}
+
+.latest-timeline ul.timeline-main {
+  position: relative;
+
+  &::before {
+    content: "";
+    border-inline-start: 0.125rem dotted $default-border;
+    position: absolute;
+    inset-inline-start: 0.25rem;
+    width: 1px;
+    height: 84%;
+    z-index: 0;
+    inset-block-start: 0.75rem;
+  }
+}
+
+.latest-timeline .timeline-main li.activity {
+  padding: 0;
+  position: relative;
+  margin-block-end: 0.5rem;
+}
+
+.featured_icon1 {
+  width: 0.438rem;
+  height: 0.438rem;
+  line-height: 3.75rem;
+  margin-inline-start: -1.625rem !important;
+  color: $black;
+  font-size: 0.625rem;
+  background-color: $primary;
+  position: relative;
+  border-radius: 1.125rem;
+  inset-block-start: 0.75rem;
+}
+
+.featured_icon1.featured-danger {
+  background-color: $danger;
+}
+
+.featured_icon1.featured-success {
+  background-color: $success;
+}
+
+.tansaction-icon {
+  padding: 0.375rem;
+  border-radius: 0.25rem;
+  margin-inline-end: 0.75rem;
+
+  svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
+
+.recent-transactions-card {
+  .list-group-item {
+    padding: 0.75rem 1.25rem;
+  }
+}
+
+.nav.panel-tabs-task a.active {
+  border-radius: $default-radius;
+  color: $info !important;
+  background-color: rgba(var(--info-rgb), 0.1);
+}
+
+.nav.panel-tabs-task a {
+  background-color: $custom-white;
+  padding: 0.4rem 0.5rem !important;
+  font-size: 0.711rem;
+  transition: all ease 0.3s;
+}
+
+.billing-invoice-details {
+  width: 11rem;
+}
+
+#visitors-countries {
+  height: 23.9rem;
+
+  #jvm-markers-labels-group {
+    display: none;
+  }
+}
+
+#visitors-countries circle:nth-child(1) {
+  fill: $primary;
+  stroke: $primary-03;
+  stroke-width: 30;
+}
+
+#visitors-countries circle:nth-child(2) {
+  fill: $secondary;
+  stroke: rgba(var(--secondary-rgb), 0.2);
+  stroke-width: 30;
+}
+
+#visitors-countries circle:nth-child(3) {
+  fill: $danger;
+  stroke: rgba(var(--danger-rgb), 0.2);
+  stroke-width: 30;
+}
+
+#visitors-countries circle:nth-child(4) {
+  fill: $info;
+  stroke: rgba(var(--info-rgb), 0.2);
+  stroke-width: 30;
+}
+
+#visitors-countries circle:nth-child(5) {
+  fill: $orange;
+  stroke: rgba(var(--orange-rgb), 0.2);
+  stroke-width: 30;
+}
+
+#visitors-countries circle:nth-child(6) {
+  fill: $warning;
+  stroke: rgba(var(--warning-rgb), 0.2);
+  stroke-width: 30;
+}
+
+#visitors-countries circle:nth-child(7) {
+  fill: $success;
+  stroke: rgba(var(--success-rgb), 0.2);
+  stroke-width: 30;
+}
+
+#visitors-countries circle:nth-child(8) {
+  fill: $pink;
+  stroke: rgba(var(--pink-rgb), 0.2);
+  stroke-width: 30;
+}
+
+#visitors-countries circle:nth-child(9) {
+  fill: $dark;
+  stroke: rgba(var(--dark-rgb), 0.2);
+  stroke-width: 30;
+}
+
+#visitors-countries circle:nth-child(10) {
+  fill: $indigo;
+  stroke: rgba($indigo, 0.2);
+  stroke-width: 30;
+}
+
+.panel-tabs-billing li a.active {
+  background-color: rgba(var(--success-rgb), 0.1);
+  font-weight: 500;
+  color: $success;
+}
+
+.panel-tabs-billing li a {
+  padding: 0.25rem 0.5rem;
+  border-radius: $default-radius;
+  font-size: 0.75rem;
+}
+
+#sale-value {
+  .apexcharts-radialbar-hollow {
+    fill: $custom-white;
+  }
+
+  #apexcharts-radialbarTrack-0 {
+    stroke: $light;
+  }
+}
+
+.latest-timeline {
+  max-height: 24rem;
+}
+
+#sale-value {
+  .apexcharts-datalabels-group text {
+    fill: $primary !important;
+  }
+}
+
+[dir="rtl"] {
+  #salesOverview {
+    .apexcharts-yaxis-texts-g {
+      transform: translate(-1rem, 0);
+    }
+
+    .apexcharts-yaxis-title {
+      transform: translate(-3rem, 0);
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  #salesOverview {
+    .apexcharts-toolbar {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 1399.99px) {
+  .sales-visitors-countries {
+    border-block-end: 1px dashed $default-border;
+  }
+}
+
+@media (min-width: 1400px) {
+  .sales-visitors-countries {
+    border-inline-end: 1px dashed $default-border;
+  }
+}
+#crm-main {
+  .apexcharts-canvas,
+  .apexcharts-svg {
+    width: auto !important;
+  }
+}
+
+/* End:: Sales Dashboard Styles */
+
+/* Start:: Ecommerce Dashboard Styles */
+.ecommerce-icon {
+  svg {
+    width: 1.75rem;
+    height: 1.75rem;
+    padding: 0.35rem;
+    border-radius: $default-radius;
+
+    &.primary {
+      background-color: $primary;
+    }
+
+    &.secondary {
+      background-color: $secondary;
+    }
+
+    &.success {
+      background-color: $success;
+    }
+
+    &.warning {
+      background-color: $warning;
+    }
+  }
+}
+
+.ecommerce-sale-image {
+  img {
+    height: 16.625rem;
+  }
+
+  position: relative;
+
+  &::before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+}
+
+.ecommerce-bankoffer-details {
+  font-size: 0.75rem;
+  width: 70%;
+  border-radius: $default-radius;
+  background-color: rgba(255, 255, 255, 0.25);
+  opacity: 0.8;
+  padding: 0.625rem;
+  backdrop-filter: blur(1.875rem);
+}
+
+.ecommerce-sale-days {
+  position: absolute;
+  bottom: 1.25rem;
+  font-size: 0.75rem;
+  border-radius: $default-radius;
+  background-color: rgba(255, 255, 255, 0.25);
+  opacity: 0.8;
+  padding: 0.25rem 0.625rem;
+  backdrop-filter: blur(1.875rem);
+}
+
+.ecommerce-sales-calendar {
+  position: absolute;
+  inset-inline-end: 1.875rem;
+  background-color: rgba(255, 255, 255, 0.25);
+  padding: 0.5rem 0.625rem;
+  border-radius: 0.3rem;
+  backdrop-filter: blur(1.875rem);
+}
+
+.active-tab tr:hover .orders-arrow i {
+  color: $primary;
+  font-weight: 600;
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+[dir="rtl"] {
+  .orders-arrow i::before {
+    content: "\EA64";
+  }
+
+  @media (max-width: 400px) {
+    #earnings {
+      .apexcharts-inner .apexcharts-xaxis {
+        transform: translate(0, 1.25rem);
+      }
+    }
+  }
+}
+
+.earning {
+  position: relative;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0.438rem;
+    inset-inline-start: -0.813rem;
+    bottom: 0.313rem;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 3.125rem;
+  }
+
+  &.first-half:before {
+    background-color: $primary-03;
+  }
+
+  &.top-gross:before {
+    background-color: $primary;
+  }
+
+  &.second-half:before {
+    background-color: #e4e7ed;
+  }
+}
+
+.top-country-name {
+  width: 4.5rem;
+}
+
+/* End:: Ecommerce Dashboard Styles */
+
+/* Start:: Crypto Dashboard Styles */
+.crypto-list {
+  .list-group-item {
+    padding: 0.8rem 1.25rem;
+  }
+}
+// .crypto-buy-sell-input {
+//   width: 100% !important;
+// }
+@media (min-width: 576px) {
+  .crypto-buy-sell-input {
+    width: 60% !important;
+  }
+}
+
+#buy-crypto,
+#sell-crypto {
+  .choices__inner {
+    min-width: 5rem !important;
+  }
+
+  .choices__list--dropdown .choices__item--selectable::after,
+  .choices__list[aria-expanded] .choices__item--selectable::after {
+    display: none !important;
+  }
+
+  .choices__list--dropdown .choices__item--selectable,
+  .choices__list[aria-expanded] .choices__item--selectable {
+    padding-inline-end: 0 !important;
+  }
+}
+
+#btc-chart,
+#eth-chart,
+#dash-chart,
+#bitcoin-price-graph,
+#etherium-price-graph,
+#dash-price-graph,
+#ripple-price-graph,
+#iota-price-graph,
+#neo-price-graph,
+#lite-chart,
+#ripple-chart,
+#monero-chart,
+#bytecoin-chart,
+#eos-chart,
+#iota-chart,
+#glm-chart {
+  .apexcharts-grid {
+    display: none;
+  }
+  .apexcharts-svg,
+  .apexcharts-canvas {
+    width: 120px !important;
+  }
+}
+
+/* End:: Crypto Dashboard Styles */
+
+/* Start:: Jobs Dashboard Styles */
+.basic-subscription,
+.pro-subscription {
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 0.5rem;
+    height: 0.5rem;
+    inset-inline-start: -0.938rem;
+    border-radius: 0.3rem;
+    inset-block-start: 0.6rem;
+  }
+}
+
+.basic-subscription:before {
+  background-color: $primary;
+}
+
+.pro-subscription:before {
+  background-color: $secondary;
+}
+
+#recent-jobs {
+  max-height: 22.5rem;
+}
+
+#candidates-chart {
+  .apexcharts-datalabels-group text {
+    fill: $default-text-color !important;
+  }
+}
+
+.recent-recruiter {
+  max-width: 7rem;
+}
+
+/* End:: Jobs Dashboard Styles */
+
+/* Start:: NFT Dashboard */
+[dir="rtl"] {
+  #nft-collections-slide {
+    .swiper-slide {
+      .card {
+        direction: rtl;
+      }
+    }
+  }
+}
+#nft-collections-slide {
+  .card.custom-card .card-footer {
+    padding: 1.05rem 1.25rem;
+  }
+}
+
+.nft-table {
+  &.table {
+    td,
+    th {
+      padding: 0.83rem;
+    }
+  }
+}
+.nft-table2 {
+  &.table {
+    td,
+    th {
+      padding: 0.78rem;
+    }
+  }
+}
+
+.featured-nft {
+  width: 100%;
+  height: 13rem;
+  border-radius: $default-radius;
+
+  img {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    border-radius: $default-radius;
+  }
+}
+
+.nft-auction-time {
+  position: absolute;
+  top: 3.5rem;
+  inset-inline-end: 1rem;
+  padding: 0.25rem 0.5rem;
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 0.3rem;
+  backdrop-filter: blur(1.875rem);
+}
+
+.nft-like-section {
+  position: absolute;
+  inset-block-start: 1rem;
+}
+
+.nft-like-badge {
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(1.875rem);
+}
+
+.nft-collector-progress {
+  width: 3.125rem;
+}
+
+.nft-featuredcollect-image {
+  height: 8.813rem !important;
+  border-radius: $default-radius;
+  position: relative;
+
+  &::before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+}
+
+#top-collector {
+  max-height: 28.375rem;
+}
+
+#nft-balance-chart {
+  .apexcharts-grid {
+    display: none;
+  }
+}
+
+/* End:: NFT Dashboard */
+
+/* Start:: Analytics Dashboard */
+#analytics-bouncerate {
+  position: absolute;
+  inset-block-end: 0;
+}
+
+#sessions .apexcharts-datalabels-group text {
+  fill: $default-text-color !important;
+}
+
+#analytics-views,
+#analytics-followers {
+  circle {
+    fill: $custom-white;
+  }
+
+  #apexcharts-radialbarTrack-0 {
+    stroke: $light;
+  }
+}
+
+#analytics-views {
+  .apexcharts-datalabels-group text {
+    fill: $warning;
+  }
+}
+
+#analytics-followers {
+  .apexcharts-datalabels-group text {
+    fill: $secondary;
+  }
+}
+
+.analytics-visitors-countries li {
+  margin-block-end: 1.385rem;
+
+  &:last-child {
+    margin-block-end: 0;
+  }
+
+  .progress {
+    width: 6.25rem;
+  }
+}
+
+.custom-card.upgrade-card {
+  height: 11.625rem;
+  position: relative;
+  overflow: hidden;
+  background-color: $primary !important;
+  background-repeat: no-repeat;
+
+  &:before {
+    content: "";
+    position: absolute;
+    background-image: url("../images/media/media-85.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    inset-inline-start: 0;
+    inset-block-start: 0;
+    inset-inline-end: 0;
+    inset-block-end: 0;
+    opacity: 0.15;
+  }
+
+  .avatar {
+    position: absolute;
+    inset-block-start: -0.6875rem;
+    inset-inline-end: 1.5rem;
+  }
+
+  .upgrade-card-content {
+    position: absolute;
+    inset-block-end: 1rem;
+  }
+}
+
+#analytics-users {
+  .apexcharts-grid {
+    display: none;
+  }
+}
+
+/* End:: Analytics Dashboard */
+
+/* Start:: Projects Dashboard */
+.team-members-card {
+  li {
+    margin-block-end: 1.5rem;
+
+    &:last-child {
+      margin-block-end: 0;
+    }
+  }
+
+  #user1,
+  #user2,
+  #user3,
+  #user4,
+  #user5 {
+    .apexcharts-grid {
+      display: none;
+    }
+  }
+}
+
+.daily-task-card,
+.projects-maintask-card {
+  margin-block-end: 0;
+
+  li {
+    margin-block-end: 1.25rem;
+
+    &:last-child,
+    .card {
+      margin-block-end: 0;
+    }
+  }
+}
+
+.project-transactions-card {
+  margin-block-end: 0;
+
+  li {
+    margin-block-end: 1.45rem;
+
+    &:last-child {
+      margin-block-end: 0;
+    }
+  }
+}
+
+.projects-tracking-card {
+  background-color: $white;
+  position: relative;
+
+  .card-body {
+    z-index: 1;
+  }
+
+  img {
+    width: 15.5rem;
+    height: 9.5rem;
+  }
+}
+
+.shape-1,
+.shape-2,
+.shape-3,
+.shape-4,
+.shape-5,
+.shape-6,
+.shape-7,
+.shape-8,
+.shape-9,
+.shape-10,
+.shape-11,
+.shape-12,
+.shape-13,
+.shape-14,
+.shape-15,
+.shape-16 {
+  position: absolute;
+  animation: animate 2s linear infinite wase;
+
+  i {
+    opacity: 0.2;
+  }
+}
+
+@-webkit-keyframes animate {
+  0% {
+    -webkit-transform: translateY(0) rotate(0);
+    opacity: 1;
+  }
+
+  100% {
+    -webkit-transform: translateY(-90px) rotate(360deg);
+    opacity: 0;
+  }
+}
+@keyframes animate {
+  0% {
+    -webkit-transform: translateY(0) rotate(0);
+    opacity: 1;
+  }
+
+  100% {
+    -webkit-transform: translateY(-90px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.shape-1 {
+  inset-inline-start: 20%;
+  inset-block-start: 20%;
+  animation: animate 4s linear infinite;
+}
+
+.shape-2 {
+  inset-inline-start: 5%;
+  inset-block-start: 42%;
+  animation: animate 5s linear infinite;
+}
+
+.shape-3 {
+  inset-inline-end: 15%;
+  inset-block-end: 55%;
+  animation: animate 7s linear infinite;
+}
+
+.shape-4 {
+  inset-inline-start: 55%;
+  inset-block-start: 25%;
+  animation: animate 10s linear infinite;
+}
+
+.shape-5 {
+  inset-inline-start: 50%;
+  inset-block-end: 30%;
+  animation: animate 8s linear infinite;
+}
+
+.shape-6 {
+  inset-inline-end: 10%;
+  inset-block-end: 10%;
+  animation: animate 4s linear infinite;
+}
+
+.shape-7 {
+  inset-inline-start: 20%;
+  inset-block-end: 17%;
+  animation: animate 5s linear infinite;
+}
+
+.shape-8 {
+  inset-inline-end: 20%;
+  inset-block-end: 17%;
+  animation: animate 7s linear infinite;
+}
+
+.shape-16 {
+  inset-inline-start: 20%;
+  inset-block-start: 5%;
+  animation: animate 7s linear infinite;
+}
+
+.shape-15 {
+  inset-inline-start: 5%;
+  inset-block-start: 42%;
+  animation: animate 11s linear infinite;
+}
+
+.shape-14 {
+  inset-inline-end: 15%;
+  inset-block-end: 55%;
+  animation: animate 3s linear infinite;
+}
+
+.shape-13 {
+  inset-inline-start: 5%;
+  inset-block-start: 25%;
+  animation: animate 3s linear infinite;
+}
+
+.shape-12 {
+  inset-inline-start: 50%;
+  inset-block-end: 3%;
+  animation: animate 9s linear infinite;
+}
+
+.shape-11 {
+  inset-inline-end: 10%;
+  inset-block-end: 10%;
+  animation: animate 5s linear infinite;
+}
+
+.shape-10 {
+  inset-inline-start: 22%;
+  inset-block-end: 9%;
+  animation: animate 3s linear infinite;
+}
+
+.shape-9 {
+  inset-inline-end: 2%;
+  inset-block-end: 7%;
+  animation: animate 6s linear infinite;
+}
+
+[dir="rtl"] {
+  #projectAnalysis {
+    .apexcharts-canvas .apexcharts-yaxis .apexcharts-yaxis-texts-g {
+      transform: translate(0.5rem, 0);
+    }
+  }
+}
+
+/* End:: Projects Dashboard */
+
+/* Start:: CRM Dashboard */
+#crm-total-customers,
+#crm-total-revenue,
+#crm-conversion-ratio,
+#crm-total-deals {
+  .apexcharts-grid line,
+  .apexcharts-xaxis line,
+  .apexcharts-grid-borders line {
+    stroke: transparent;
+  }
+}
+
+.crm-recent-activity {
+  li {
+    padding-block-end: 1.3rem;
+
+    &:last-child {
+      padding-block-end: 0;
+    }
+  }
+
+  .crm-timeline-content {
+    width: 15.5rem;
+  }
+
+  .crm-recent-activity-content {
+    position: relative;
+
+    &::before {
+      position: absolute;
+      content: "";
+      width: 1px;
+      background-color: transparent;
+      inset-block-start: 1.4375rem;
+      inset-inline-start: 0.5625rem;
+    }
+
+    &:nth-child(1) {
+      &::before {
+        border-inline-end: 1px dashed $primary-02;
+        height: 60%;
+      }
+    }
+
+    &:nth-child(2) {
+      &::before {
+        border-inline-end: 1px dashed rgba(var(--secondary-rgb), 0.2);
+        height: 68%;
+      }
+    }
+
+    &:nth-child(3) {
+      &::before {
+        border-inline-end: 1px dashed rgba(var(--success-rgb), 0.2);
+        height: 42%;
+      }
+    }
+
+    &:nth-child(4) {
+      &::before {
+        border-inline-end: 1px dashed rgba(var(--pink-rgb), 0.2);
+        height: 60%;
+      }
+    }
+
+    &:nth-child(5) {
+      &::before {
+        border-inline-end: 1px dashed rgba(var(--warning-rgb), 0.2);
+        height: 47%;
+      }
+    }
+
+    &:nth-child(6) {
+      &::before {
+        border-inline-end: 1px dashed rgba(var(--info-rgb), 0.2);
+        height: 60%;
+      }
+    }
+
+    &:nth-child(7) {
+      &::before {
+        border-inline-end: 1px dashed rgba(var(--dark-rgb), 0.2);
+        height: 50%;
+      }
+    }
+
+    &:last-child {
+      &::before {
+        display: none;
+      }
+    }
+  }
+}
+
+.card.custom-card.crm-highlight-card {
+  position: relative;
+  overflow: hidden;
+  background-color: $primary !important;
+  box-shadow: none;
+
+  &::after {
+    position: absolute;
+    content: "";
+    height: 100%;
+    width: 100%;
+    background-image: url(../images/media/media-65.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 0;
+    opacity: 0.2;
+  }
+
+  .card-body {
+    z-index: 10;
+  }
+}
+
+#crm-leadsbysource .apexcharts-datalabels-group text {
+  fill: var(--default-text-color) !important;
+}
+
+.crm-lead-legend {
+  position: relative;
+
+  &::before {
+    position: absolute;
+    content: "";
+    width: 0.375rem;
+    height: 0.375rem;
+    border-radius: $default-radius;
+    inset-block-start: 0.375rem;
+    inset-inline-start: -0.625rem;
+  }
+
+  &.mobile:before {
+    background-color: $primary;
+  }
+
+  &.desktop:before {
+    background-color: $secondary;
+  }
+
+  &.laptop:before {
+    background-color: $warning;
+  }
+
+  &.tablet:before {
+    background-color: $success;
+  }
+}
+
+.crm-leadsinprogress {
+  margin-block-end: 0;
+
+  li {
+    margin-block-end: 1.3rem;
+
+    &:last-child {
+      margin-block-end: 0;
+    }
+  }
+}
+
+.leads-source-chart {
+  canvas {
+    position: relative;
+  }
+
+  .lead-source-value {
+    position: absolute;
+    text-align: center;
+  }
+}
+
+#crm-main circle {
+  fill: transparent;
+}
+
+#crm-main .apexcharts-datalabels-group text {
+  fill: rgba(255, 255, 255, 0.9);
+}
+
+#crm-main #apexcharts-radialbarTrack-0 {
+  stroke: rgba(0, 0, 0, 0.2);
+}
+
+.crm-main-content {
+  position: absolute;
+  bottom: 20px;
+}
+
+.crm-top-deals {
+  li {
+    margin-block-end: 0.9rem;
+
+    &:last-child {
+      margin-block-end: 0;
+    }
+  }
+}
+
+#crm-revenue-analytics {
+  .apexcharts-title-text {
+    transform: translateY(0.625rem);
+  }
+
+  @media (max-width: 575.98px) {
+    .apexcharts-canvas {
+      .apexcharts-toolbar {
+        inset-block-start: 0.75rem !important;
+        inset-inline-end: 0 !important;
+      }
+
+      .apexcharts-title-text {
+        font-size: 0.74rem;
+      }
+    }
+  }
+}
+
+#leads-source {
+  height: 18rem !important;
+  width: auto !important;
+}
+
+.crm-deals-status li {
+  position: relative;
+  margin-block-end: 1rem;
+  margin-inline-start: 1rem;
+
+  &:last-child {
+    margin-block-end: 0;
+  }
+
+  &:before {
+    content: "";
+    position: absolute;
+    width: 0.5rem;
+    height: 0.5rem;
+    inset-block-start: 0.375rem;
+    inset-inline-start: -1rem;
+    border-radius: 50%;
+  }
+
+  &.primary {
+    &:before {
+      background-color: $primary;
+    }
+  }
+
+  &.info {
+    &:before {
+      background-color: $info;
+    }
+  }
+
+  &.warning {
+    &:before {
+      background-color: $warning;
+    }
+  }
+
+  &.success {
+    &:before {
+      background-color: $success;
+    }
+  }
+}
+
+[dir="rtl"] {
+  #earnings {
+    .apexcharts-yaxis-title {
+      transform: translateX(-5.3125rem);
+    }
+  }
+
+  #bar-basic {
+    .apexcharts-yaxis.apexcharts-xaxis-inversed {
+      .apexcharts-text.apexcharts-yaxis-label.apexcharts-yaxis-label {
+        transform: translateX(-4.375rem);
+      }
+    }
+  }
+}
+
+.crm-deals-forecast-revenue {
+  li {
+    margin-block-end: 1.25rem;
+
+    &:last-child {
+      margin-block-end: 0;
+    }
+  }
+}
+
+#top-country-deals {
+  height: 14.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  #jvm-markers-labels-group {
+    display: none;
+  }
+
+  #jvm-regions-group path {
+    fill: $light !important;
+  }
+
+  circle {
+    right: 5;
+  }
+}
+
+#top-country-deals circle:nth-child(1) {
+  fill: $primary;
+  stroke: $primary-03;
+  stroke-width: 20;
+}
+
+#top-country-deals circle:nth-child(2) {
+  fill: $secondary;
+  stroke: rgba(var(--secondary-rgb), 0.2);
+  stroke-width: 20;
+}
+
+#top-country-deals circle:nth-child(3) {
+  fill: $danger;
+  stroke: rgba(var(--danger-rgb), 0.2);
+  stroke-width: 20;
+}
+
+#top-country-deals circle:nth-child(4) {
+  fill: $info;
+  stroke: rgba(var(--info-rgb), 0.2);
+  stroke-width: 20;
+}
+
+#top-country-deals circle:nth-child(5) {
+  fill: $warning;
+  stroke: rgba(var(--warning-rgb), 0.2);
+  stroke-width: 20;
+}
+
+#top-country-deals circle:nth-child(6) {
+  fill: $success;
+  stroke: rgba(var(--success-rgb), 0.2);
+  stroke-width: 20;
+}
+
+/* End:: CRM Dashboard */
+
+/* Start:: HRM Dashboard */
+.card.custom-card.hrm-main-card {
+  border-top-width: 3px;
+  border-top-style: solid;
+
+  &.primary {
+    border-color: $primary-03;
+  }
+
+  &.secondary {
+    border-color: rgba(var(--secondary-rgb), 0.3);
+  }
+
+  &.warning {
+    border-color: rgba(var(--warning-rgb), 0.3);
+  }
+
+  &.danger {
+    border-color: rgba(var(--danger-rgb), 0.3);
+  }
+}
+
+.timeline-widget {
+  position: relative;
+
+  &:before {
+    position: absolute;
+    content: "";
+    width: 0.125rem;
+    height: 100%;
+    background-color: $default-border;
+    inset-block-start: 0;
+    inset-inline-start: 3rem;
+  }
+
+  .timeline-widget-list {
+    margin-block-end: 1.5rem;
+    position: relative;
+
+    &:before {
+      content: "";
+      position: absolute;
+      width: 0.75rem;
+      height: 0.75rem;
+      inset-inline-start: 2.688rem;
+      top: 0.25rem;
+      border-radius: 3.125rem;
+      border: 0.125rem solid $default-border;
+      background-color: $custom-white;
+    }
+
+    &:last-child {
+      margin-block-end: 0;
+    }
+
+    .timeline-widget-content {
+      max-width: 20rem;
+    }
+  }
+}
+
+#jobs-summary {
+  .apexcharts-pie text {
+    fill: $default-text-color !important;
+  }
+}
+
+.hrm-jobs-legend {
+  position: relative;
+
+  &::before {
+    position: absolute;
+    content: "";
+    width: 0.375rem;
+    height: 0.375rem;
+    border-radius: 0.5rem;
+    inset-block-start: 0.375rem;
+    inset-inline-start: -0.625rem;
+  }
+
+  &.published:before {
+    background-color: $primary;
+  }
+
+  &.private:before {
+    background-color: $primary-05;
+  }
+
+  &.closed:before {
+    background-color: rgb(243, 246, 248);
+  }
+
+  &.onhold:before {
+    background-color: rgb(35, 35, 35);
+  }
+}
+
+[dir="rtl"] {
+  @media (max-width: 404px) {
+    #performanceReport {
+      .apexcharts-xaxis {
+        transform: translate(0px, 20px);
+      }
+    }
+  }
+
+  @media (max-width: 525px) {
+    #subscriptionOverview {
+      .apexcharts-xaxis {
+        transform: translate(0px, 40px);
+      }
+    }
+  }
+}
+
+/* End:: HRM Dashboard */
+
+/* Start:: Stocks Dashboard */
+#total-invested,
+#total-investments,
+#portfolio-value,
+#returns-rate {
+  .apexcharts-grid-borders line,
+  .apexcharts-grid line {
+    stroke: transparent;
+  }
+}
+
+.my-stocks-ul {
+  li {
+    padding: 0.87rem 1rem;
+    border-bottom: 1px dashed $default-border;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+}
+
+/* End:: Stocks Dashboard */
+
+/* Start:: Courses Dashboard */
+.category-link {
+  padding: 1.25rem;
+  border-radius: $default-radius;
+  border: 1px solid $default-border;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: $text-muted;
+  transition: all ease 0.3s;
+
+  &.primary .category-svg {
+    fill: $primary;
+  }
+
+  &.secondary .category-svg {
+    fill: $secondary;
+  }
+
+  &.warning .category-svg {
+    fill: $warning;
+  }
+
+  &.success .category-svg {
+    fill: $success;
+  }
+}
+
+.category-link .category-svg {
+  height: 1.875rem;
+  width: 1.875rem;
+  margin-block-end: 1rem;
+  transition: all ease 0.3s;
+}
+
+.category-link.primary:not(.active):hover,
+.category-link.primary.active {
+  color: $primary;
+  background-color: $primary-01;
+  border-color: $primary-02;
+}
+
+.category-link.secondary:not(.active):hover,
+.category-link.secondary.active {
+  color: $secondary;
+  background-color: rgba(var(--secondary-rgb), 0.1);
+  border-color: rgba(var(--secondary-rgb), 0.2);
+}
+
+.category-link.warning:not(.active):hover,
+.category-link.warning.active {
+  color: $warning;
+  background-color: rgba(var(--warning-rgb), 0.1);
+  border-color: rgba(var(--warning-rgb), 0.2);
+}
+
+.category-link.success:not(.active):hover,
+.category-link.success.active {
+  color: $success;
+  background-color: rgba(var(--success-rgb), 0.1);
+  border-color: rgba(var(--success-rgb), 0.2);
+}
+
+.course-status-progress {
+  width: 3.125rem;
+}
+
+.courses-instructors {
+  li {
+    margin-block-end: 1rem;
+
+    &:last-child {
+      margin-block-end: 0;
+    }
+  }
+}
+
+[dir="rtl"] {
+  #courses-earnings {
+    .apexcharts-yaxis {
+      transform: translate(1.625rem, 0);
+    }
+  }
+
+  @media (max-width: 420px) {
+    #courses-earnings {
+      .apexcharts-xaxis {
+        transform: translate(-10px, 20px);
+      }
+    }
+  }
+}
+
+/* End:: Courses Dashboard */
+
+/* Start:: Personal Dashboard */
+.personal-upcoming-events {
+  li {
+    margin-block-end: 1rem;
+
+    &:last-child {
+      margin-block-end: 0;
+    }
+  }
+}
+
+.personal-messages-list {
+  li {
+    margin-block-end: 1rem;
+
+    &:last-child {
+      margin-block-end: 0;
+    }
+
+    .message {
+      max-width: 15rem;
+    }
+  }
+}
+
+.circle-progress {
+  position: relative;
+  z-index: 1;
+}
+
+.circle-progress::after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  top: 0;
+  inset-inline-end: 0;
+  background-image: linear-gradient(102deg, transparent 41%, $primary-05 0%),
+    linear-gradient(90deg, #f3f3f3 50%, transparent 50%);
+  z-index: -1;
+}
+
+.personal-goals-list {
+  li {
+    margin-block-end: 1rem;
+
+    &:last-child {
+      margin-block-end: 0;
+    }
+  }
+}
+
+.personal-favourite-contacts {
+  li {
+    margin-block-end: 1rem;
+
+    &:last-child {
+      margin-block-end: 0;
+    }
+  }
+}
+#sleepTrack,
+#waterTrack {
+  .apexcharts-grid {
+    display: none;
+  }
+}
+
+/* End:: Personal Dashboard */

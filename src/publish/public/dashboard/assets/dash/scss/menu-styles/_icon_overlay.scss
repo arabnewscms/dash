@@ -1,0 +1,127 @@
+[data-vertical-style="overlay"][data-toggled="icon-overlay-close"] {
+    @media(min-width: 992px) {
+        &:not([data-icon-overlay="open"]) {
+            .app-sidebar {
+                width: 5rem;
+                .main-sidebar-header {
+                    width: 5rem;
+                    .header-logo {
+                        .toggle-logo {
+                            display: block;
+                        }
+                        .desktop-dark,
+                        .desktop-logo,
+                        .toggle-dark,.desktop-white,.toggle-white {
+                            display: none;
+                        }
+                    }
+                }
+                .category-name,
+                .side-menu__label,
+                .side-menu__angle {
+                    display: none;
+                }
+                .slide.has-sub.open {
+                    .slide-menu {
+                        display: none !important;
+                    }
+                }
+                .side-menu__icon {
+                    margin-inline-end: 0;
+                }
+                .slide__category {
+                    padding: 1.2rem 1.65rem;
+                    position: relative;
+                    &:before {
+                        content: "";
+                        position: absolute;
+                        inset-inline-start: 2.25rem;
+                        inset-inline-end: 0;
+                        inset-block-start: 1.25rem;
+                        inset-block-end: 0;
+                        width: 0.35rem;
+                        border-radius: 3.125rem;
+                        height: 0.35rem;
+                        border: 1px solid $menu-prime-color;
+                        opacity: 1;
+                    }
+                }
+                .side-menu__item .badge {
+                    display: none;
+                }
+            }
+            .side-menu__item {
+                justify-content: center;
+            }
+        }
+        .app-header {
+            padding-inline-start: 5rem;
+        }
+        .app-content {
+            margin-inline-start: 5rem;
+        }
+
+        &[data-icon-overlay="open"] {
+            .app-sidebar {
+                width: 15rem;
+                .main-sidebar-header {
+                    width: 15rem;
+                    .header-logo {
+                        .desktop-logo {
+                            display: block;
+                        }
+                        .desktop-dark,
+                        .toggle-logo,
+                        .toggle-dark,.desktop-white,.toggle-white {
+                            display: none;
+                        }
+                    }
+                }
+                // .side-menu__item .badge {
+                //     display: inline;
+                // }
+                .side-menu__item {
+                    justify-content: flex-start;
+                }
+                .side-menu__icon {
+                    margin-inline-end: 0.625rem;
+                }
+                .slide__category {
+                    padding: 0.75rem 1.65rem;
+                    &:before {
+                        display: none;
+                    }
+                }
+            }
+        }
+        
+        &[data-theme-mode="dark"] {
+            .main-sidebar-header {
+                .header-logo {
+                    .toggle-dark {
+                        display: block;
+                    }
+                    .desktop-dark,
+                    .desktop-logo,
+                    .toggle-logo,.desktop-white,.toggle-white {
+                        display: none;
+                    }
+                }
+            }
+            &[data-icon-overlay="open"] {
+                .main-sidebar-header {
+                    .header-logo {
+                        .desktop-dark {
+                            display: block;
+                        }
+                        .toggle-dark,
+                        .desktop-logo,
+                        .toggle-logo,.desktop-white,.toggle-white {
+                            display: none;
+                        }
+                    }
+                }   
+            }
+        }
+    }
+}

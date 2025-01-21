@@ -1,0 +1,26 @@
+<?php
+namespace {{namespace}};
+use Dash\Extras\Inspector\Action;
+
+class {{name}} extends Action {
+
+	/**
+	 * options to do some action with type message
+	 * like danger,info,warning,success
+	 * @return array<string>
+	 */
+	public static function options() {
+		//Example
+		return [
+			'status' => [
+				'show' => [
+					'success' => 'Show Record Successfully',
+   				],
+				'hide' => [
+					'danger' => 'Hide Record Successfully',
+				]
+			],
+		];
+	}
+
+}

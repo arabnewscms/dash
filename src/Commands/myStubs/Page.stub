@@ -1,0 +1,62 @@
+<?php
+namespace {{namespace}};
+//use App\Models\ModelName;
+use Dash\Pages;
+use Illuminate\Contracts\Support\Renderable;
+class {{name}} extends Pages {
+
+    /**
+    * @var string $model
+    */
+	//public static $model    = ModelName::class ;
+
+    /**
+    * @var string $icon
+    */
+	public static $icon     = '<i class="fa fa-file"></i>';
+
+    /**
+    * @var string $position
+    */
+	public static $position = 'top';// top|bottom
+
+
+	/**
+	 * Rule List array
+	 * @return array<string>
+	 */
+	public static function rule() {
+		return [
+			//'name' => 'required|string',
+		];
+	}
+
+	/**
+	 * Nicename Fields
+	 * @return array<string>
+	 */
+	public static function attribute() {
+		return [
+			//'name' => 'Name',
+		];
+	}
+
+	/**
+	 * custom page name
+	 * @return string
+	 */
+	public static function pageName() {
+		return '{{name}}';
+	}
+
+	/**
+	 * custom content page
+	 * @return Renderable
+	 */
+	public static function content() {
+		return view('{{name}}', [
+				'title'    => static ::pageName(),
+				//'{{name}}' => ModelName::find(1),
+			]);
+	}
+}

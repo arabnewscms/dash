@@ -1,0 +1,47 @@
+@font-face {
+font-family: 'Cairo';
+font-style: normal;
+font-weight: normal;
+src: local('Cairo Regular'), url('Cairo-Regular.woff') format('woff');
+}
+@font-face {
+font-family: 'Cairo Regular';
+font-style: normal;
+font-weight: normal;
+src: local('Cairo Regular'), url('Cairo-Regular.woff') format('woff');
+}
+
+@font-face {
+font-family: 'Cairo ExtraLight';
+font-style: normal;
+font-weight: normal;
+src: local('Cairo ExtraLight'), url('Cairo-ExtraLight.woff') format('woff');
+}
+
+@font-face {
+font-family: 'Cairo Light';
+font-style: normal;
+font-weight: normal;
+src: local('Cairo Light'), url('Cairo-Light.woff') format('woff');
+}
+
+@font-face {
+font-family: 'Cairo SemiBold';
+font-style: normal;
+font-weight: normal;
+src: local('Cairo SemiBold'), url('Cairo-SemiBold.woff') format('woff');
+}
+
+@font-face {
+font-family: 'Cairo Bold';
+font-style: normal;
+font-weight: normal;
+src: local('Cairo Bold'), url('Cairo-Bold.woff') format('woff');
+}
+
+@font-face {
+font-family: 'Cairo Black';
+font-style: normal;
+font-weight: normal;
+src: local('Cairo Black'), url('Cairo-Black.woff') format('woff');
+}

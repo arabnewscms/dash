@@ -1,0 +1,21 @@
+<?php
+namespace {{namespace}};
+
+//use Dash\Extras\Inputs\Card;
+//use Dash\Extras\Inputs\HTML;
+use Dash\Resource;
+
+class {{name}} extends Resource {
+
+	/**
+	 * add your card here by Card , HTML Class
+	 * or by view instnance render blade file
+	 * @return array<string>
+	 */
+	public static function cards() {
+		return [
+
+		];
+	}
+
+}

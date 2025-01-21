@@ -1,0 +1,168 @@
+@if($multiSelectRecord)
+      { "data":null,
+        orderable:false,
+        searchable:false,
+        targets:0,
+        render: function(data,type,full,meta){
+          return `
+                    <center>
+                    <input class="form-check-input border selectID{{ $resourceName }}" type="checkbox" id="selectID{{ $resourceName }}" value="`+data.id+`">
+                    </center>
+          `;
+        }
+      },
+@endif
+    @foreach($fields as $field)
+    @if($field['show_rules']['showInIndex'])
+      @if($field['type'] == 'image')
+      {
+        "data":null,
+        orderable:false,
+        searchable:false,
+        render: function(data,type,full,meta){
+          var imageLink = getImageURL(data.{{ $field['attribute'] }});
+          modalImage(imageLink,data.id);
+          return `
+          <img class="img-fluid rounded-circle img-thumbnail"
+           src="`+imageLink+`" alt="image"
+           style="cursor: pointer;width:48px;height:48px"
+           data-bs-toggle="modal"
+           data-bs-target="#avatar_image{{ $resourceName }}`+data.id+`">
+          `;
+        }
+      },
+      @elseif($field['type'] == 'select')
+            {
+        "data":null,
+        orderable: {{!$field['orderable']?'false':'true'}} ,
+        searchable:{{!$field['searchable']?'false':'true' }},
+        render: function(data,type,full,meta){
+           var options = {!! json_encode($field['options'],JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT) !!};
+           var field = data.{{ $field['attribute'] }};
+           if(options !== null){
+            return options[field]??field;
+           }else {
+            return field;
+           }
+        }
+      },
+      @else
+        {
+@php
+ $attribute = explode('.',$field['attribute'])[0];
+ $label = explode('.',$field['attribute'])[1]??null;
+@endphp
+
+          "data": null,
+           orderable: {{!$field['orderable']?'false':'true'}} ,
+           searchable:{{!$field['searchable']?'false':'true' }},
+          render: function(data,type,full,meta){
+            var column = '{{ $attribute }}';
+
+
+var relationType = table{{ $resourceName }}.row()?.context[0]?.json?.ForeignKeyNames?.{{ $attribute }}?.relationType;
+
+            if(data.hasOwnProperty(column)){
+{{-- var relationType = table{{ $resourceName }}.row()?.context[0]?.json?.resources?.{{ $attribute }}?.getForeignKeyName.relationType; --}}
+
+
+              var field = data.{{ $attribute }};
+                // get URL From Resource Relations
+                 var resourceURL = table{{ $resourceName }}.row()?.context[0]?.json?.resources?.{{ $attribute }}?.url;
+
+
+              if(Array.isArray(field)){
+
+                // hasMany , belongsToMany
+                if(relationType == 'hasMany' || relationType == 'belongsToMany'){
+                @if(!empty($label) && !empty($attribute))
+
+                  var labels = '';
+                  for(i=0;i < data.{{ $attribute }}.length;i++){
+                 labels += '<p>'+data.{{ $attribute }}[i].{{ $label }}+'</p>';
+                  }
+                return `<a href="`+resourceURL+data.id+`" field1>`+labels+`</a>`;
+                @else
+
+                return `<a href="`+resourceURL+data.id+`" field2>`+field.length+`</a>`;
+                @endif
+                }else if(relationType == 'hasManyThrough'){
+                @if(!empty($label) && !empty($attribute))
+
+                  var labels = '';
+                  for(i=0;i < data.{{ $attribute }}.length;i++){
+                 labels += '<p>'+data.{{ $attribute }}[i].{{ $label }}+'</p>';
+                  }
+                return `<a href="`+resourceURL+data.id+`" field1>`+labels+`</a>`;
+                @else
+
+                return `<a href="`+resourceURL+data.id+`" field2>`+field.length+`</a>`;
+                @endif
+                }else if(relationType == 'morphTo' || relationType == 'morphToMany' || relationType == 'morphMany'){
+
+                    @if(!empty($label) && !empty($attribute))
+
+                    var labels = '';
+                    for(i=0;i < data.{{ $attribute }}.length;i++){
+                   labels += '<p>'+data.{{ $attribute }}[i].{{ $label }}+'</p>';
+
+                    }
+
+                  return labels;
+                  @else
+
+                  return field.length;
+                  @endif
+                }
+              } else if(typeof(field) == 'object'){
+
+                var label = data?.{{ str_replace('.','?.',$field['attribute']) }};
+
+                var replaceLabel = label === undefined?'-':label;
+
+                    if(resourceURL !== undefined && relationType != 'morphTo'){
+                      return `<a href="`+resourceURL+data.id+`" field3>`+replaceLabel??data?.id+`</a>`;
+                    }else if(relationType == 'morphTo'){
+                      return replaceLabel??data?.id;
+                    }else if(relationType == 'hasOne'){
+                      return replaceLabel??data?.id;
+                    }else if(relationType == 'hasOneThrough'){
+                      return replaceLabel??data?.id;
+                    }else{
+                      return ``+field!=='null'?field:'-'+``;
+                    }
+              }else{
+
+
+                    return ``+field!=='null'?field:'-'+``;
+              }
+            }else{
+
+              return '--';
+            }
+          }
+        },
+        @endif
+      @endif
+      @endforeach
+      {
+
+        orderable: false,
+    "data": null,
+    render:function (data, type, full, meta){
+      return `
+      @if($resource['pagesRules']['edit'])
+      <a href='{{ url($DASHBOARD_PATH.'/resource/'.$resource['resourceName']) }}/edit/`+data.id+`'><i class='fa fa-edit'></i></a>
+      @endif
+      @if($resource['pagesRules']['show'])
+      <a href='{{ url($DASHBOARD_PATH.'/resource/'.$resource['resourceName']) }}/`+data.id+`'><i class='fa fa-eye'></i></a>
+      @endif
+      @if($resource['pagesRules']['destroy'])
+      <a href="#" action='{{ url($DASHBOARD_PATH.'/resource/'.$resource['resourceName']) }}/`+data.id+`' rowid="`+data.id+`" class="deleteRow{{ $resourceName }}"><i class='fa fa-trash'></i></a>
+      @endif
+      `;
+    },
+    "defaultContent": "",
+    //"targets": -1
+
+  },

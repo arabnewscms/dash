@@ -1,0 +1,36 @@
+@extends('dash::app')
+@section('content')
+<div class="container-fluid py-4">
+	<div class="row">
+		<div class="col-12">
+			<div class="card my-4">
+				<div class="card-header">
+					<div class="row">
+						<div class="col-6">
+							<h6 class="text-dark text-capitalize">{{ $title }} </h6>
+						</div>
+					</div>
+				</div>
+				<div class="card-body px-3 pb-2">
+					<div class="row">
+						@if(!empty($settings))
+						<form action="{{ url()->current() }}/{{ $settings->id }}" method="post">
+							@csrf
+							<div class="col-12">
+								<label for="inputname" class="form-label">Name</label>
+								<input type="text" class="form-control {{ $errors->has('name')?'is-invalid':'' }} border" id="inputname" aria-describedby="inputname" value="{{ $settings->name??'' }}" placeholder="Name" name="name" >
+								<div id="inputname" class="form-text">Please Write Your Data Here</div>
+								@error('name')
+								<p class="invalid-feedback">{{ $message }}</p>
+								@enderror
+							</div>
+							<button type="submit" class="btn btn-success">Update</button>
+						</form>
+						@endif
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+@endsection

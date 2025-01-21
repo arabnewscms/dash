@@ -1,0 +1,169 @@
+.authentication {
+  min-height: 100vh;
+  .authentication-brand {
+    &.desktop-logo {
+      display: block;
+    }
+    &.desktop-dark {
+      display: none;
+    }
+  }
+  .swiper-button-next,
+  .swiper-button-prev {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.5) !important;
+  }
+  .swiper-pagination-bullet {
+    opacity: 0.1;
+  }
+  .swiper-pagination-bullet-active {
+    opacity: 0.5;
+  }
+  .google-svg {
+    width: 0.75rem;
+    height: 0.75rem;
+    margin-inline-end: 0.5rem;
+  }
+  .authentication-barrier {
+    position: relative;
+    span {
+      position: relative;
+      z-index: 2;
+    }
+    &:before {
+      position: absolute;
+      content: "";
+      width: 45%;
+      height: 0.125rem;
+      background-image: linear-gradient(to left, transparent, $light);
+      border-radius: 50%;
+      inset-inline-end: 0;
+      inset-block-start: 0.563rem;
+      z-index: 1;
+    }
+    &:after {
+      position: absolute;
+      content: "";
+      width: 45%;
+      height: 0.125rem;
+      background-image: linear-gradient(to left, $light, transparent);
+      border-radius: 50%;
+      inset-inline-start: 0;
+      inset-block-start: 0.563rem;
+      z-index: 1;
+    }
+  }
+  &.coming-soon,
+  &.under-maintenance {
+    .authentication-cover {
+      background-image: url(../images/media/media-19.jpg);
+      .aunthentication-cover-content {
+        width: 100%;
+        height: 100%;
+        padding: 3rem;
+        backdrop-filter: none;
+        background-color: $custom-white;
+        &:before,
+        &:after {
+          display: none;
+        }
+        .coming-soon-time,
+        .under-maintenance-time {
+          border: 2px dashed $black-1;
+        }
+        .authentication-brand {
+          width: auto;
+          height: auto;
+          border: 0;
+        }
+      }
+    }
+  }
+  .coming-soom-image-container,
+  .under-maintenance-image-container {
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+  .authentication-cover {
+    background-image: url(../images/authentication/1.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    &:before {
+      position: absolute;
+      content: "";
+      width: 100%;
+      height: 100%;
+      inset-inline-start: 0;
+      inset-inline-end: 0;
+      inset-block-start: 0;
+      inset-block-end: 0;
+      background-color: $primary-02;
+    }
+    .aunthentication-cover-content {
+      width: 70%;
+      height: 37.5rem;
+      background-color: rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(1.875rem);
+      padding: 2rem;
+      position: relative;
+      img {
+        margin: 0 auto;
+        width: 13.75rem;
+        height: 13.75rem;
+      }
+    }
+  }
+  &.authentication-basic {
+    .desktop-dark {
+      display: none;
+    }
+    .desktop-logo {
+      display: block;
+    }
+  }
+  .form-control-lg {
+    &#one,
+    &#two,
+    &#three,
+    &#four {
+      padding-inline: 0;
+    }
+  }
+}
+[data-theme-mode="dark"] {
+  .authentication {
+    &.authentication-basic {
+      .desktop-dark {
+        display: block;
+      }
+      .desktop-logo {
+        display: none;
+      }
+    }
+    .authentication-brand {
+      &.desktop-logo {
+        display: none;
+      }
+      &.desktop-dark {
+        display: block;
+      }
+    }
+  }
+}
+.authentication {
+  .desktop-logo,
+  .desktop-dark {
+    height: 2rem;
+    line-height: 2rem;
+  }
+}
