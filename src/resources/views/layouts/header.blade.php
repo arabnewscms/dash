@@ -44,9 +44,7 @@
                 </a>
                 <!-- End::header-link -->
             </div> --}}
-            <!-- End::header-element -->
-            @include('dash::dash_update_checker')
-            <!-- Start::header-element -->
+
             <div class="header-element country-selector">
                 <!-- Start::header-link -->
                 @if (!empty($DASHBOARD_LANGUAGES) && count($DASHBOARD_LANGUAGES) > 1)
