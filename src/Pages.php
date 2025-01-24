@@ -1,4 +1,5 @@
 <?php
+
 namespace Dash;
 
 use Validator;
@@ -24,9 +25,7 @@ abstract class Pages
      */
     public static function rule()
     {
-        return [
-
-        ];
+        return [];
     }
 
     /**
@@ -35,9 +34,7 @@ abstract class Pages
      */
     public static function attribute()
     {
-        return [
-
-        ];
+        return [];
     }
 
     /**
@@ -77,10 +74,9 @@ abstract class Pages
         }
 
         $data = static::$model::find($id);
-        foreach (request()->except(['_token', '_method','lang']) as $key => $value) {
+        foreach (request()->except(['_token', '_method', 'lang']) as $key => $value) {
             if (request()->hasFile($key)) {
-
-                $data->{$key} = request()->file($key)->store(get_class(static::$model));
+                $data->{$key} = request()->file($key)->store(class_basename(static::$model));
             } else {
                 $data->{$key} = $value;
             }
@@ -90,5 +86,4 @@ abstract class Pages
         session()->flash('success', static::$successMessage);
         return back();
     }
-
 }
