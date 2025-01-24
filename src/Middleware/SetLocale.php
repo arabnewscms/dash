@@ -16,6 +16,11 @@ class SetLocale
      */
     public function handle(Request $request, Closure $next)
     {
+
+        if (!empty(session('DASHBOARD_CURRENT_LANG', config('dash.DEFAULT_LANG')))) {
+            $request->merge(['lang' => session('DASHBOARD_CURRENT_LANG', config('dash.DEFAULT_LANG'))]);
+        }
+
         if (empty(request('lang'))) {
             return redirect(url()->current() . '?lang=' . session('DASHBOARD_CURRENT_LANG', config('dash.DEFAULT_LANG')));
         } elseif (!empty(session('DASHBOARD_CURRENT_LANG')) && session('DASHBOARD_CURRENT_LANG') != request('lang')) {
