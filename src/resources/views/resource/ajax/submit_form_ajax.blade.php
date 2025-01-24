@@ -123,7 +123,7 @@ $(document).ready(function(){
  var elementClass = form_id+' .'+key;
  var getTabRandomName = '#'+$('.'+key+'-tab').attr('id');
 
- $(getTabRandomName).prepend('<span class="p-1 m-1 bg-danger border dotted rounded-circle"></span>');
+ $(getTabRandomName).prepend('<span class="badge rounded-pill bg-danger" style="border-radius: 50% !important;height: 10px;width:10px;padding:5px"></span>');
  // if has translatable End
  $(elementID).addClass('border-danger is-invalid');
  if($(elementID).attr('type') == 'file'){
