@@ -101,7 +101,7 @@ $(document).on('click','.{{ $add_inline_btn }}',function(e){
                 var elementClass = form_id_inline{{ $resourceName }}+' .'+key_inline;
                 var getTabRandomName = '#'+$(form_id_inline{{ $resourceName }}+' .'+key_inline+'-tab').attr('id');
 
-                $(getTabRandomName).prepend('<span class="badge rounded-pill bg-danger" style="border-radius: 50% !important;height: 10px;width:10px;padding:5px"></span>');
+                $(getTabRandomName).prepend('<span class="badge rounded-pill bg-danger" style="border-radius: 50% !important;height: 10px;width:10px;padding:5px"><span class="visually-hidden">alert</span></span>');
                 // if has translatable End
                 $(elementID).addClass('border-danger is-invalid');
                 if($(elementID).attr('type') == 'file'){
