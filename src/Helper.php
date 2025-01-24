@@ -3,6 +3,7 @@
 if (!function_exists('dash_init_input')) {
     function dash_init_input($input_type, $name = null, $attribute = null, $resource = null)
     {
+
         if (!empty($name) || !empty($attribute) || !empty($resource)) {
             return (new \Dash\Extras\Inputs\Field($input_type))->make($name, $attribute, $resource);
         } else {
@@ -33,9 +34,9 @@ if (!function_exists('text')) {
 }
 
 if (!function_exists('hidden')) {
-    function hidden($name = null, $attribute = null, $resource = null)
+    function hidden($attribute = null, $resource = null)
     {
-        return dash_init_input('hidden', $name, $attribute, $resource);
+        return dash_init_input('hidden', $attribute, $resource);
     }
 }
 
