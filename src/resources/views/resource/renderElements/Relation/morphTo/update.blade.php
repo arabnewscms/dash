@@ -2,10 +2,10 @@
     @php
         $selected = isset($field['selected']) ? $field['selected'] : null;
         $morphName = $field['attribute'];
-        $selectedClass = !empty($model->{$field['attribute']})? get_class($model->{$field['attribute']}):null;
-        $selectedClassName = !empty($selectedClass)? resourceShortName($selectedClass):null;
+        $selectedClass = !empty($model->{$field['attribute']}) ? get_class($model->{$field['attribute']}) : null;
+        $selectedClassName = !empty($selectedClass) ? resourceShortName($selectedClass) : null;
         $mainResModel = $model;
-        $col = isset($field['columnWhenUpdate'])?$field['columnWhenUpdate']:$field['column'];
+        $col = isset($field['columnWhenUpdate']) ? $field['columnWhenUpdate'] : $field['column'];
     @endphp
     <div class="col-lg-{{ $col }} col-md-{{ $col }} col-sm-12 col-xs-12 box_{{ $morphName }}">
         <div class="form-group my-3 ">
@@ -79,12 +79,13 @@
             {!! isset($field['help']) ? $field['help'] : '' !!}
 
             @if (method_exists($resource::$model, 'trashed'))
-                <label class="custom-switch" for="withTrashed{{ $morphNameModel }}">
-                    <input  type="checkbox" name="withTrashed{{ $morphNameModel }}" value="yes"
-                    id="withTrashed{{ $morphNameModel }}" checked class="custom-switch-input">
-                    <span class="custom-switch-indicator"></span>
-                    <span class="custom-switch-description">{{ __('dash::dash.withTrashed') }}</span>
-                </label>
+                <div class="form-check form-switch pt-1">
+                    <input class="form-check-input" style="width: 26px;height: 14px;margin-left: -2.5em;" type="checkbox" role="switch"
+                        name="withTrashed{{ $morphNameModel }}" value="yes" checked
+                        id="withTrashed{{ $morphNameModel }}">
+                    <label class="form-check-label text-dark"
+                        for="withTrashed{{ $morphNameModel }}">{{ __('dash::dash.withTrashed') }}</label>
+                </div>
             @endif
 
         </div>

@@ -8,8 +8,10 @@ trait DatatableResource
     protected $resourcesRelatedWithRelations = [];
 
     /**
-     * Register ForeginKey In List To Use In Resources
-     * to help  resourcesRelatedWithRelations method to make a url
+     * Register foreign key names for relationships.
+     *
+     * @param mixed $q The query builder instance.
+     * @param string $resource The resource name.
      * @return void
      */
     public function registerForeignKeyNames($q, $resource)
@@ -68,29 +70,20 @@ trait DatatableResource
                     $url = url(app()['dash']['DASHBOARD_PATH'] . '/resource/' . $resourceName) . '/';
                 } elseif (!empty($foregin)) {
 
-                    if ($foregin['relationType'] == 'belongsToMany') {
-                        $manyType = 'loadByResourceToMany';
-                    } elseif ($foregin['relationType'] == 'belongsTo') {
-                        $manyType = 'loadByResourcebelongsTo';
-                    } elseif ($foregin['relationType'] == 'hasOneThrough') {
-                        $manyType = 'loadByResourcehasOneThrough';
-                    } elseif ($foregin['relationType'] == 'hasOne') {
-                        $manyType = 'loadByResourcehasOne';
-                    } elseif ($foregin['relationType'] == 'hasManyThrough') {
-                        $manyType = 'loadByResourcehasManyThrough';
-                    } elseif ($foregin['relationType'] == 'hasMany') {
-                        $manyType = 'loadByResourcehasMany';
-                    } elseif ($foregin['relationType'] == 'morphTo') {
-                        $manyType = 'loadByResourcemorphTo';
-                    } elseif ($foregin['relationType'] == 'morphMany') {
-                        $manyType = 'loadByResourcemorphMany';
-                    } elseif ($foregin['relationType'] == 'morphToMany') {
-                        $manyType = 'loadByResourcemorphToMany';
-                    } elseif ($foregin['relationType'] == 'morphedByMany') {
-                        $manyType = 'loadByResourcemorphedByMany';
-                    } else {
-                        $manyType = 'loadByResourcehasMany';
-                    }
+
+                    $manyType = match ($foregin['relationType']) {
+                        'belongsToMany'   => 'loadByResourceToMany',
+                        'belongsTo'       => 'loadByResourcebelongsTo',
+                        'hasOneThrough'   => 'loadByResourcehasOneThrough',
+                        'hasOne'          => 'loadByResourcehasOne',
+                        'hasManyThrough'  => 'loadByResourcehasManyThrough',
+                        'hasMany'         => 'loadByResourcehasMany',
+                        'morphTo'         => 'loadByResourcemorphTo',
+                        'morphMany'       => 'loadByResourcemorphMany',
+                        'morphToMany'     => 'loadByResourcemorphToMany',
+                        'morphedByMany'   => 'loadByResourcemorphedByMany',
+                        default           => 'loadByResourcehasMany',
+                    };
 
                     $url = url(app()['dash']['DASHBOARD_PATH'] . '/resource/' . $resourceName . '?' . $manyType . '[' . array_values($foregin)[0] . ']=');
                 }
@@ -157,15 +150,16 @@ trait DatatableResource
                 // Use Reflection to get the relationship
                 $reflection = new \ReflectionMethod($this->resource['model'], $relation);
                 $instance = $reflection->invoke(new $this->resource['model']());
+                // $relationMethod = $relation; // اسم العلاقة
+                // $instance = (new $this->resource['model'])->$relationMethod();
 
                 if ($instance instanceof \Illuminate\Database\Eloquent\Relations\Relation) {
                     $relationClass = get_class($instance->getRelated());
+                    // Query the related model for each specified column
+                    $relatedQuery = $relationClass::query();
 
                     // Check if the related class supports translations
                     if (method_exists($relationClass, 'translation')) {
-                        // Query the related model for each specified column
-                        $relatedQuery = $relationClass::query();
-
                         foreach ($columns as $column) {
                             if (in_array($column, app($this->resource['model'])->translatedAttributes)) {
                                 // Column is part of the translatable attributes, apply the translation query
@@ -186,6 +180,12 @@ trait DatatableResource
                         }
                     }
                 }
+
+                $table->whereHas($relation, function ($q) use ($columns, $searchValue) {
+                    foreach ($columns as $column) {
+                        $q->where($column, 'LIKE', "%{$searchValue}%");
+                    }
+                });
             }
         }
 
@@ -203,18 +203,30 @@ trait DatatableResource
         if (!empty(request('filters'))) {
             $decode = json_decode(request('filters'));
             foreach ($decode as $filter) {
-                $date_range = dash_check_range_date_input($filter->value);
+                // $date_range = dash_check_range_date_input($filter->value);
 
-                if (!empty($filter->name) && !empty($filter->value)) {
-                    if (strtotime($filter->value) !== false) {
-                        $table = $table->whereDate($filter->name, $filter->value);
-                    } elseif ($date_range !== false && is_array($date_range) && count($date_range) > 1 && $date_range['multiple'] === false) {
-                        $table = $table->whereBetween($filter->name, $date_range['dates']);
-                    } elseif ($date_range !== false && is_array($date_range) && count($date_range) > 1 && $date_range['multiple'] === true) {
-                        $table = $table->whereIn(\DB::raw('DATE(' . $filter->name . ')'), $date_range['dates']);
+                // if (!empty($filter->name) && !empty($filter->value)) {
+                //     if (strtotime($filter->value) !== false) {
+                //         $table = $table->whereDate($filter->name, $filter->value);
+                //     } elseif ($date_range !== false && is_array($date_range) && count($date_range) > 1 && $date_range['multiple'] === false) {
+                //         $table = $table->whereBetween($filter->name, $date_range['dates']);
+                //     } elseif ($date_range !== false && is_array($date_range) && count($date_range) > 1 && $date_range['multiple'] === true) {
+                //         $table = $table->whereIn(\DB::raw('DATE(' . $filter->name . ')'), $date_range['dates']);
+                //     } else {
+                //         $table = $table->where($filter->name, $filter->value);
+                //     }
+                // }
+
+                if ($date_range = dash_check_range_date_input($filter->value)) {
+                    if ($date_range['multiple']) {
+                        $table->whereIn(\DB::raw('DATE(' . $filter->name . ')'), $date_range['dates']);
                     } else {
-                        $table = $table->where($filter->name, $filter->value);
+                        $table->whereBetween($filter->name, $date_range['dates']);
                     }
+                } elseif (strtotime($filter->value) !== false) {
+                    $table->whereDate($filter->name, $filter->value);
+                } else {
+                    $table->where($filter->name, $filter->value);
                 }
             }
         }
@@ -272,36 +284,44 @@ trait DatatableResource
 
         // If Resource Need Custom Data By many to many like articles.id
         if (!empty(request('loadByResourceToMany'))) {
-            $relatedResource = request('loadByResourceToMany');
-            foreach ($relatedResource as $key => $value) {
+            foreach (request('loadByResourceToMany') as $key => $value) {
                 $methodNameOrTable = explode('.', $key)[0] ?? null;
-                //dd($methodNameOrTable);
-                //"article_category.article_id"
-                $PivotKeyName = $table->{$methodNameOrTable}()->getQualifiedRelatedPivotKeyName();
-                $columnName   = explode('.', $PivotKeyName)[1] ?? null;
-
-                //"article_category.category_id"
-                //$getForeignKeyName = $table->{ $methodNameOrTable}()->getQualifiedForeignPivotKeyName();
-
-
-                $table = $table->whereHas($methodNameOrTable, function ($q) use ($columnName, $value) {
-                    // get by many to many
-                    if (!empty($columnName) && !empty($value)) {
-                        //dd($columnName, $value);
-                        $q->where($columnName, $value);
-                    }
+                $table->whereHas($methodNameOrTable, function ($q) use ($key, $value) {
+                    $q->where(explode('.', $key)[1], $value);
                 });
             }
         }
+        // if (!empty(request('loadByResourceToMany'))) {
+        //     $relatedResource = request('loadByResourceToMany');
+        //     foreach ($relatedResource as $key => $value) {
+        //         $methodNameOrTable = explode('.', $key)[0] ?? null;
+        //         //dd($methodNameOrTable);
+        //         //"article_category.article_id"
+        //         $PivotKeyName = $table->{$methodNameOrTable}()->getQualifiedRelatedPivotKeyName();
+        //         $columnName   = explode('.', $PivotKeyName)[1] ?? null;
+
+        //         //"article_category.category_id"
+        //         //$getForeignKeyName = $table->{ $methodNameOrTable}()->getQualifiedForeignPivotKeyName();
+
+
+        //         $table = $table->whereHas($methodNameOrTable, function ($q) use ($columnName, $value) {
+        //             // get by many to many
+        //             if (!empty($columnName) && !empty($value)) {
+        //                 //dd($columnName, $value);
+        //                 $q->where($columnName, $value);
+        //             }
+        //         });
+        //     }
+        // }
 
 
         $table = $this->searchWithRelation($table);
         $table = $this->searchable($table);
         $table = $this->orderable($table);
 
-        $table                  = app($this->resource['resourceNameFull'])->query($table);
+        $table                  =  app($this->resource['resourceNameFull'])->query($table);
         $totalRecordswithFilter = $table->count();
-        $totalRecords           = $table->count();
+        $totalRecords           = $totalRecordswithFilter;
 
         if ($this->resource['paging']) {
             $table = $table->skip(request('start'));

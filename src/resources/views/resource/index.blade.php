@@ -1,10 +1,10 @@
 @extends('dash::app')
 @section('content')
-<div class="row row-sm">
-    @foreach ($resource['resourceNameFull']::vertex() as $vertex)
-        {!! $vertex !!}
-    @endforeach
-</div>
+    <div class="row row-sm">
+        @foreach ($resource['resourceNameFull']::vertex() as $vertex)
+            {!! $vertex !!}
+        @endforeach
+    </div>
 
     <div class="row row-sm">
         <div class="col-lg-12 mt-2">
@@ -26,11 +26,12 @@
                             @if ($multiSelectRecord && method_exists($resource['model'], 'trashed'))
                                 <div class="col-md-2">
 
-                                        <div class="custom-toggle-switch d-flex align-items-center mb-4">
-                                            <input  id="withTrashed{{ $resourceName }}"  name="withTrashed" value="yes" type="checkbox" >
-                                            <label for="withTrashed{{ $resourceName }}" class="label-dark"></label>
-                                            <span class="ms-3 text-dark">{{ __('dash::dash.withTrashed') }}</span>
-                                        </div>
+                                    <div class="custom-toggle-switch d-flex align-items-center mb-4">
+                                        <input id="withTrashed{{ $resourceName }}" name="withTrashed" value="yes"
+                                            type="checkbox">
+                                        <label for="withTrashed{{ $resourceName }}" class="label-dark"></label>
+                                        <span class="ms-3 text-dark">{{ __('dash::dash.withTrashed') }}</span>
+                                    </div>
 
                                 </div>
                             @endif
@@ -49,7 +50,7 @@
                         <thead>
                             <tr>
                                 @if ($multiSelectRecord)
-                                    <th class="text-xs  center">
+                                    <th class="text-xs center" style="width: 15px">
                                         <input class="form-check-input selectAll{{ $resourceName }}" type="checkbox" />
                                     </th>
                                 @endif

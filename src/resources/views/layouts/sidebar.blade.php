@@ -130,7 +130,6 @@
                                                         {{ $group['customName'] ?? ucfirst($group['group']) }}
                                                     @endif
                                                 </span>
-                                                <i class="fas fa-chevron-right side-menu__angle"></i>
                                             </a>
                                         </li>
                                     @elseif(!isset($group['displayInMenu']) && empty($group['displayInMenu']))

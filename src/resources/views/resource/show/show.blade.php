@@ -121,9 +121,7 @@
         </div>
     </div>
 
-    @push('js')
-        @include('dash::resource.relation_datatable.datatable_pack.library')
-    @endpush
+
     @foreach ($fields as $field)
         @if (!empty($field['show_rules']['showInShow']) && $field['show_rules']['showInShow'] === true)
             @php

@@ -34,9 +34,10 @@ if (!function_exists('text')) {
 }
 
 if (!function_exists('hidden')) {
-    function hidden($attribute = null, $resource = null)
+    function hidden($name = null, $value = null)
     {
-        return dash_init_input('hidden', $attribute, $resource);
+
+        return dash_init_input('hidden', $name, $value);
     }
 }
 
@@ -405,4 +406,3 @@ if (!function_exists('lara_module')) {
 
 
 // }
-

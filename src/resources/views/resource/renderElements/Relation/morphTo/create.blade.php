@@ -2,7 +2,7 @@
     @php
         $selected = isset($field['selected']) ? $field['selected'] : null;
         $morphName = $field['attribute'];
-        $col = isset($field['columnWhenCreate'])?$field['columnWhenCreate']:$field['column'];
+        $col = isset($field['columnWhenCreate']) ? $field['columnWhenCreate'] : $field['column'];
 
     @endphp
     <div class="col-lg-{{ $col }} col-md-{{ $col }} col-sm-12 col-xs-12 box_{{ $morphName }}">
@@ -65,13 +65,14 @@
             </select>
 
             @if (method_exists($resource::$model, 'trashed'))
-                <label class="custom-switch" for="withTrashed{{ $morphNameModel }}">
-                    <input  type="checkbox" name="withTrashed{{ $morphNameModel }}" value="yes"
-                    id="withTrashed{{ $morphNameModel }}" {{ old('withTrashed'.$morphNameModel)?'checked':'' }} class="custom-switch-input">
-                    <span class="custom-switch-indicator"></span>
-                    <span class="custom-switch-description">{{ __('dash::dash.withTrashed') }}</span>
-                </label>
-
+                <div class="form-check form-switch pt-1">
+                    <input class="form-check-input" style="width: 26px;height: 14px;margin-left: -2.5em;" type="checkbox" role="switch"
+                        name="withTrashed{{ $morphNameModel }}" value="yes"
+                        {{ old('withTrashed' . $morphNameModel) ? 'checked' : '' }}
+                        id="withTrashed{{ $morphNameModel }}">
+                    <label class="form-check-label text-dark"
+                        for="withTrashed{{ $morphNameModel }}">{{ __('dash::dash.withTrashed') }}</label>
+                </div>
             @endif
 
         </div>

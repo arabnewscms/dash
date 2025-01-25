@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() == 'ar' ? 'ar' : 'en' }}" dir="{{ app()->getLocale() == 'ar' ? 'rtl' : 'ltr' }}"
-    data-nav-layout="vertical" data-vertical-style="overlay">
+    data-nav-layout="vertical" data-vertical-style="overlay" data-nav-style="menu-click"
+    data-theme-mode="light" data-menu-styles="dark"
+    data-toggled="icon-click-closed">
 {{--   data-theme-mode="light" data-header-styles="light" data-menu-styles="dark" data-toggled="close" --}}
 
 <head>
@@ -162,9 +164,15 @@
             font-size: 0.813rem;
             font-family: var(--default-font-family);
         }
-
     </style>
-
+    {{-- Datatable CSS --}}
+    @if (app()->getLocale() == 'ar')
+        <link rel="stylesheet" type="text/css"
+            href="{{ url('dashboard/assets/dash/libs/datatable/css/dataTables.bootstrap5-rtl.css') }}">
+    @else
+        <link rel="stylesheet" type="text/css"
+            href="{{ url('dashboard/assets/dash/libs/datatable/css/dataTables.bootstrap5.css') }}">
+    @endif
 </head>
 
 <body>
@@ -183,7 +191,7 @@
         </div>
         <!-- End::app-content -->
         <style>
-            .dataTables_processing{
+            .dataTables_processing {
                 color: rgb(var(--dark-rgb)) !important;
             }
         </style>
@@ -191,6 +199,26 @@
 
         @include('dash::layouts.footer')
 
+
+        {{-- Datatable js --}}
+        <script src="{{ url('dashboard/assets/dash') }}/libs/datatable/js/jquery.dataTables.min.js"></script>
+        <script src="{{ url('dashboard/assets/dash') }}/libs/datatable/js/dataTables.bootstrap5.js"></script>
+        <script src="{{ url('dashboard/assets/dash') }}/libs/datatable/js/dataTables.buttons.min.js"></script>
+        <script src="{{ url('dashboard/assets/dash') }}/libs/datatable/js/buttons.bootstrap5.min.js"></script>
+        <script src="{{ url('dashboard/assets/dash') }}/libs/datatable/js/jszip.min.js"></script>
+        <script src="{{ url('dashboard/assets/dash') }}/libs/datatable/pdfmake/pdfmake.min.js"></script>
+        <script src="{{ url('dashboard/assets/dash') }}/libs/datatable/pdfmake/vfs_fonts.js"></script>
+        <script src="{{ url('dashboard/assets/dash') }}/libs/datatable/js/buttons.html5.min.js"></script>
+        <script src="{{ url('dashboard/assets/dash') }}/libs/datatable/js/buttons.print.min.js"></script>
+        <script src="{{ url('dashboard/assets/dash') }}/libs/datatable/js/buttons.colVis.min.js"></script>
+        <script src="{{ url('dashboard/assets/dash') }}/libs/datatable/dataTables.responsive.min.js"></script>
+        <script src="{{ url('dashboard/assets/dash') }}/libs/datatable/responsive.bootstrap5.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('.dataTables_info,.dataTables_length').addClass('text-dark')
+                $('.dataTables_length label').addClass('ms-2')
+            });
+        </script>
 </body>
 
 </html>

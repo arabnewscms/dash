@@ -1,5 +1,5 @@
 @push('js')
-    @include('dash::resource.datatable_pack.library')
+
     <script type="text/javascript">
         $(document).ready(function() {
 
