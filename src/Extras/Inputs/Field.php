@@ -1,4 +1,5 @@
 <?php
+
 namespace Dash\Extras\Inputs;
 
 use Dash\Extras\Inputs\Elements;
@@ -37,10 +38,11 @@ class Field
         CustomHtml,
         ContractableAndRules;
 
+    protected static $inputs = [];
+
     public function __construct($type, $name = null, $attribute = null, $input = null)
     {
         static::$type = $type;
-
     }
 
     /**
@@ -53,19 +55,9 @@ class Field
         return in_array($type, static::$element_types);
     }
 
-    /**
-     *  this method make the input with name and attribute in views
-     * @param string $name, string $attribute
-     * @return self static
-     */
-    public static function make($name, $attribute = null, $resource = null)
+
+    private static function resetOptions()
     {
-
-        $attribute = empty($attribute)?
-        strtolower(str_replace(' ', '_', $name)):
-        $attribute;
-
-        // reset the option again
         static::$showInIndex           = true;
         static::$showInShow            = true;
         static::$showInCreate          = true;
@@ -73,7 +65,18 @@ class Field
         static::$disablePreviewButton  = true;
         static::$disableDwonloadButton = true;
         static::$deleteable            = true;
-        $inputData                      = [
+    }
+
+    private static function prepareInputData($name, $attribute, $resource)
+    {
+        // if (!is_string($name) || empty($name)) {
+        //     throw new \InvalidArgumentException('Name must be a non-empty string.');
+        // }
+        if (isset(static::$inputs[$attribute])) {
+            throw new \Exception("Input with attribute '$attribute' already exists.");
+        }
+
+        return [
             'type'          => static::$type,
             'name'          => $name,
             'attribute'     => $attribute,
@@ -87,7 +90,26 @@ class Field
                 'showInUpdate' => true,
                 'showInShow'   => true,
             ],
+            'resource'      => $resource,
         ];
+    }
+
+    /**
+     *  this method make the input with name and attribute in views
+     * @param string $name, string $attribute
+     * @return self static
+     */
+    public static function  make(string $name, ?string $attribute = null, $resource = null)
+    {
+
+        $attribute = empty($attribute) ?
+            strtolower(str_replace(' ', '_', $name)) :
+            $attribute;
+
+        // reset the option again
+        static::resetOptions();
+        $inputData = static::prepareInputData($name, $attribute, $resource);
+
 
         if (!empty($resource)) {
             $inputData['resource'] = $resource;
@@ -95,13 +117,16 @@ class Field
 
         if (static::checkElementType(static::$type)) {
             static::$input[static::$index] = $inputData;
-            static::$index                  = static::$index+1;
-
+            static::$index++;
             return static::fillData();
         } else {
-            throw new \Exception(static::$type.' incorrect. please write a correct element like ('.implode(',', static::$element_types).')');
+            throw new \Exception(static::$type . ' incorrect. please write a correct element like (' . implode(',', static::$element_types) . ')');
         }
+    }
 
+    public static function getInputs()
+    {
+        return static::$inputs;
     }
 
     /**
@@ -113,21 +138,20 @@ class Field
     {
         static::UpdateRules();
 
-        return new static (static::$type, static::$name, static::$attribute, static::$input);
+        return new self(static::$type, static::$name, static::$attribute, static::$input);
     }
 
     public function __call($name, $arguments)
     {
         if (!method_exists($this, $name)) {
-            throw new \Exception('->'.$name.'() function undefined or not exists in dash project');
+            throw new \Exception('->' . $name . '() function undefined or not exists in dash project');
         }
     }
 
     public static function __callStatic($name, $arguments)
     {
         if (!method_exists(Field::class, $name)) {
-            throw new \Exception('::'.$name.'() function undefined or not exists in dash project');
+            throw new \Exception('::' . $name . '() function undefined or not exists in dash project');
         }
     }
-
 }

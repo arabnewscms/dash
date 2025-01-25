@@ -64,6 +64,7 @@ class ExecResources
                 if (request()->segment(2) == 'resource' && $shortName == request()->segment(3)) {
                     $resource = new $resources;
                     // Register Resource Everythings
+
                     $resourceData = [
                         'resourceName'     => $shortName,
                         'resourceNameFull' => get_class($resource),

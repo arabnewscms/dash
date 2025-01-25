@@ -118,7 +118,6 @@ class DashRouteServiceProvider extends ServiceProvider
         Route::prefix(config('dash.DASHBOARD_PATH'))
             ->middleware(['web', \Dash\Middleware\SetLocale::class])
             ->group(function () {
-                sleep(2);
                 (new ExecResources)->execute();
                 (new ExecBlankPages)->execute();
             });
