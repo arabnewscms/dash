@@ -225,7 +225,7 @@ trait DatatableResource
                     }
                 } elseif (strtotime($filter->value) !== false) {
                     $table->whereDate($filter->name, $filter->value);
-                } else {
+                } elseif (!empty($filter->name) && !empty($filter->value)) {
                     $table->where($filter->name, $filter->value);
                 }
             }
