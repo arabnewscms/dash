@@ -44,30 +44,35 @@
     <!--fontawesome-free-6.2.0 Js Start-->
     <script src="{{ url('dashboard/assets/dash/fonts/fontawesome-free-6.2.0-web/js/all.min.js') }}"></script>
     <!--fontawesome-free-6.2.0 Js End-->
+    <style>
+       .authentication .desktop-logo, .authentication .desktop-dark {
+            height: 16rem;
+        }
+    </style>
 </head>
 
 <body>
 
     <div class="container">
         <div class="row justify-content-center align-items-center authentication authentication-basic h-100">
-            <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-6 col-sm-8 col-12">
-                <div class="my-5 d-flex justify-content-center">
-                    <a href="{{ dash('login') }}?lang={{ request('lang') }}">
-                        <img src="{{ $DASHBOARD_ICON }}" style="max-height:70px" alt="{{ env('APP_NAME') }}"
-                            class="desktop-logo" />
-                        <img src="{{ $DASHBOARD_ICON }}" style="max-height:70px" alt="{{ env('APP_NAME') }}"
-                            class="desktop-dark" />
-                    </a>
-                </div>
+            <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-6 col-sm-8 col-12">
+
                 <div class="card custom-card">
-                    <div class="card-body p-5">
+                    <div class="card-body p-3">
                         @if (session()->has('error'))
                             <div class="alert alert-warning">
                                 {{ session('error') }}
                             </div>
                         @endif
-
-                        <p class="h5 fw-semibold mb-2 text-center">@lang('dash::dash.login')</p>
+                        <div class="d-flex justify-content-center">
+                            <a href="{{ dash('login') }}?lang={{ request('lang') }}">
+                                <img src="{{ $DASHBOARD_ICON }}" style="max-height:70px" alt="{{ env('APP_NAME') }}"
+                                    class="desktop-logo" />
+                                <img src="{{ $DASHBOARD_ICON }}" style="max-height:70px" alt="{{ env('APP_NAME') }}"
+                                    class="desktop-dark" />
+                            </a>
+                        </div>
+                        <p class="h5 fw-semibold mb-2 text-center mt-2">@lang('dash::dash.login')</p>
                         {{-- <p class="mb-4 text-muted op-7 fw-normal text-center">Welcome back Jhon !</p> --}}
                         <form class="card-body pt-3" id="login" method="post"
                             action="{{ route(app('dash')['DASHBOARD_PATH'] . '.login') }}">
