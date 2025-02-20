@@ -19,7 +19,7 @@ $(inputflatpicker).flatpickr({
 	@if(isset($field['disableDates']))
 	disable: {!! json_encode($field['disableDates']) !!},
 	@endif
-	@if(isset($field['defaultDate']))
+	@if(isset($field['defaultDate']) && empty($model->{$field['attribute']}))
 	defaultDate: {!! json_encode($field['defaultDate']) !!},
 	@elseif(!empty($model) && !empty($model->{$field['attribute']}))
 	defaultDate: '{{ $model->{$field['attribute']} }}',

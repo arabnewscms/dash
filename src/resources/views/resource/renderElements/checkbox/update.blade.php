@@ -1,6 +1,6 @@
 @if ($field['show_rules']['showInUpdate'])
     @php
-        $default = isset($field['default']) ? $field['default'] : $model->{$field['attribute']};
+        $default = isset($field['default']) && empty($model->{$field['attribute']}) ? $field['default'] : $model->{$field['attribute']};
         $value = isset($field['trueVal']) ? $field['trueVal'] : $model->{$field['attribute']};
         $col = isset($field['columnWhenUpdate']) ? $field['columnWhenUpdate'] : $field['column'];
     @endphp

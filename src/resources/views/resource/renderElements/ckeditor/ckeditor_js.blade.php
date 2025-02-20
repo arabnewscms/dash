@@ -9,9 +9,55 @@
         max-width: 80%;
         margin: 20px auto;
     }
+
+    /* .ck.ck-editor__main>.ck-editor__editable {
+        background: #232628;
+        color: white;
+        border-radius: 0;
+    } */
 </style>
 
 <script>
+    $(document).ready(function() {
+
+        function applyDarkModeStyles() {
+            if ($('html').attr('data-theme-mode') == 'dark') {
+                $('.ck.ck-editor__main>.ck-editor__editable')
+                    .css('background', '#232628')
+                    .css('color', 'white')
+                    .css('border-radius', '0');
+            } else {
+                $('.ck.ck-editor__main>.ck-editor__editable')
+                    .css('background', 'white')
+                    .css('color', 'black')
+                    .css('border-radius', '0');
+            }
+        }
+
+
+        $(document).on('change', 'html[data-theme-mode]', function() {
+            applyDarkModeStyles();
+        });
+
+
+        $(document).on('click', '{{ $editor }}', function() {
+            applyDarkModeStyles();
+        });
+
+
+        $(document).on('click', function(event) {
+            if (!$(event.target).closest('{{ $editor }}').length) {
+                applyDarkModeStyles();
+            }
+        });
+
+        document.addEventListener("visibilitychange", function() {
+            applyDarkModeStyles();
+        });
+    });
+
+
+
     // This sample still does not showcase all CKEditor 5 features (!)
     // Visit https://ckeditor.com/docs/ckeditor5/latest/features/index.html to browse all the features.
     CKEDITOR.ClassicEditor.create(document.getElementById("{{ $editor }}"), {
@@ -192,7 +238,31 @@
     }).then(editor => {
         editor.editing.view.document.on('change', (evt, data) => {
             editor.updateSourceElement();
+            //  applyDarkModeStyles();
         });
+
+        // editor.editing.view.document.on('focus', () => {
+        //     applyDarkModeStyles();
+        // });
+
+        // editor.editing.view.document.on('click', () => {
+        //     applyDarkModeStyles();
+        // });
+
+
+        // editor.editing.view.document.on('blur', () => {
+        //     applyDarkModeStyles();
+        // });
+
+
+
+        // // تطبيق الألوان فور تحميل المحرر
+        // applyDarkModeStyles();
+
+        // // تطبيق الألوان عند تغيير وضع "Dark Mode"
+        // $(document).on('change', 'html[data-theme-mode]', function() {
+        //     applyDarkModeStyles();
+        // });
 
     }).catch(error => {
         //console.error(error);
