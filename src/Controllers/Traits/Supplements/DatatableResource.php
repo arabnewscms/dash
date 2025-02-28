@@ -203,19 +203,19 @@ trait DatatableResource
         if (!empty(request('filters'))) {
             $decode = json_decode(request('filters'));
             foreach ($decode as $filter) {
-                // $date_range = dash_check_range_date_input($filter->value);
+                $date_range = dash_check_range_date_input($filter->value);
 
-                // if (!empty($filter->name) && !empty($filter->value)) {
-                //     if (strtotime($filter->value) !== false) {
-                //         $table = $table->whereDate($filter->name, $filter->value);
-                //     } elseif ($date_range !== false && is_array($date_range) && count($date_range) > 1 && $date_range['multiple'] === false) {
-                //         $table = $table->whereBetween($filter->name, $date_range['dates']);
-                //     } elseif ($date_range !== false && is_array($date_range) && count($date_range) > 1 && $date_range['multiple'] === true) {
-                //         $table = $table->whereIn(\DB::raw('DATE(' . $filter->name . ')'), $date_range['dates']);
-                //     } else {
-                //         $table = $table->where($filter->name, $filter->value);
-                //     }
-                // }
+                if (!empty($filter->name) && !empty($filter->value)) {
+                    if (strtotime($filter->value) !== false) {
+                        $table = $table->whereDate($filter->name, $filter->value);
+                    } elseif ($date_range !== false && is_array($date_range) && count($date_range) > 1 && $date_range['multiple'] === false) {
+                        $table = $table->whereBetween($filter->name, $date_range['dates']);
+                    } elseif ($date_range !== false && is_array($date_range) && count($date_range) > 1 && $date_range['multiple'] === true) {
+                        $table = $table->whereIn(\DB::raw('DATE(' . $filter->name . ')'), $date_range['dates']);
+                    } else {
+                        $table = $table->where($filter->name, $filter->value);
+                    }
+                }
 
                 if ($date_range = dash_check_range_date_input($filter->value)) {
                     if ($date_range['multiple']) {
