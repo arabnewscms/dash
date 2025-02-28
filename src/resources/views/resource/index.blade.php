@@ -50,7 +50,7 @@
                         <thead>
                             <tr>
                                 @if ($multiSelectRecord)
-                                    <th class="text-xs center" style="width: 15px">
+                                    <th class="text-xs text-default center" style="width: 15px">
                                         <input class="form-check-input selectAll{{ $resourceName }}" type="checkbox" />
                                     </th>
                                 @endif

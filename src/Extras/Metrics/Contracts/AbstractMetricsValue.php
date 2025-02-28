@@ -6,26 +6,29 @@ use Dash\Extras\Metrics\Contracts\Traits\NumericMethods;
 use Dash\Extras\Metrics\Contracts\Traits\Properties;
 use Dash\Extras\Metrics\Contracts\Traits\StructureMethods;
 
-abstract class AbstractMetricsValue{
+abstract class AbstractMetricsValue
+{
     use NumericMethods,Properties,StructureMethods,AjaxCall;
 
-    public function __construct(){
-         $this->calc();
-         if(!empty($this->count)){
+    public function __construct()
+    {
+        $this->calc();
+        if (!empty($this->count)) {
             $this->result = $this->count;
-        }elseif(!empty($this->sum)){
-             $this->result = $this->sum;
+        } elseif (!empty($this->sum)) {
+            $this->result = $this->sum;
         }
     }
 
 
-     public function chartJs(){
+    public function chartJs()
+    {
         $randomLabel = 'value'.\Str::random(20);
         $loadRanges  = $this->prepareRanges($randomLabel);
-        $subTitle = !empty($this->subtitle)?'<small class="ps-3 text-xs">'.$this->subtitle.'</small>
+        $subTitle = !empty($this->subtitle)?'<small class="ps-3 text-xs text-default">'.$this->subtitle.'</small>
        ':'';
 
-          $data = '
+        $data = '
           <div class="col-md-'.$this->column.' p-1">
                     <div class="card m-0">
                         <div class="card-header pt-2 p-1">
@@ -39,23 +42,23 @@ abstract class AbstractMetricsValue{
                        <div class="m-2"></div>
                         ';
         $bodyData = '<h3 class="mt-1"> '.$this->prefix.' <span class="'.$randomLabel.'">  '.$this->result.' </span> '.$this->suffix.'</h3>';
-                       if(!empty($this->href)){
-                           $data .='<a href="'.$this->href.'" target="'.$this->hrefTarget.'">
+        if (!empty($this->href)) {
+            $data .='<a href="'.$this->href.'" target="'.$this->hrefTarget.'">
                             '.$bodyData.'
                            </a>';
-                        } else{
-                            $data .= $bodyData;
-                        }
-                        if(!empty($this->textbody)){
-                            $data .= '<small class="text-xs">'.$this->textbody.'</small>';
-                        }
+        } else {
+            $data .= $bodyData;
+        }
+        if (!empty($this->textbody)) {
+            $data .= '<small class="text-xs text-default">'.$this->textbody.'</small>';
+        }
 
 
-                        if(!empty($loadRanges)){
-                            $data .= $this->prepareAjaxCall($randomLabel,$this->model,$this->typeCalc,$this->sumCol,$this->at,$this->query,$this->query_format);
-                        }
+        if (!empty($loadRanges)) {
+            $data .= $this->prepareAjaxCall($randomLabel, $this->model, $this->typeCalc, $this->sumCol, $this->at, $this->query, $this->query_format);
+        }
 
-                        $data .='
+        $data .='
 
                         </div>
                     </div>
@@ -64,7 +67,7 @@ abstract class AbstractMetricsValue{
 
 
 
-         return $data;
+        return $data;
 
     }
 

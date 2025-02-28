@@ -25,7 +25,7 @@ abstract class AbstractMetricsProgress
         $this->height = $this->height ?? '10';
         $randomLabel = 'value' . \Str::random(20);
         $loadRanges  = $this->prepareRanges($randomLabel);
-        $subTitle = !empty($this->subtitle) ? '<small class="ps-3 text-xs">' . $this->subtitle . '</small>
+        $subTitle = !empty($this->subtitle) ? '<small class="ps-3 text-xs text-default">' . $this->subtitle . '</small>
         ' : '';
 
         $data = '
@@ -53,7 +53,7 @@ abstract class AbstractMetricsProgress
         }
 
         if (!empty($this->textbody)) {
-            $data .= '<small class="text-xs">' . $this->textbody . '</small>';
+            $data .= '<small class="text-xs text-default">' . $this->textbody . '</small>';
         }
 
         if (!empty($loadRanges)) {
@@ -69,7 +69,7 @@ abstract class AbstractMetricsProgress
                             <div class="progress-bar ' . $this->bgClass . '" role="progressbar " style="width:' . $percentage . '%;height: ' . $this->height . 'px;" aria-valuenow="' . $percentage . '" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                             </div>
-                            <div class="col-md-3 text-xs my-auto">
+                            <div class="col-md-3 text-xs text-default my-auto">
                               ' . $percentage . '%
                             </div>
                         </div>
