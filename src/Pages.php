@@ -2,7 +2,7 @@
 
 namespace Dash;
 
-use Validator;
+use Illuminate\Validation\Validator;
 
 abstract class Pages
 {

@@ -139,7 +139,7 @@ class ExecResources
         Route::post('/resource/' . $resourceData['resourceName'], function () use ($LoadResource, $resourceData) {
             return !$LoadResource->pagesRules(auth()->guard('dash')->user())['store'] ?
                 redirect(app('dash')['DASHBOARD_PATH'] . '/no-permission') :
-                $LoadResource->store();
+                $LoadResource->store(request());
         })->middleware([\Dash\Middleware\SetLocale::class]);
         // Show
         Route::get('/resource/' . $resourceData['resourceName'] . '/{id}', function ($id) use ($LoadResource, $resourceData) {
@@ -157,7 +157,7 @@ class ExecResources
         Route::put('/resource/' . $resourceData['resourceName'] . '/{id}', function ($id) use ($LoadResource, $resourceData) {
             return !$LoadResource->pagesRules(auth()->guard('dash')->user())['update'] ?
                 redirect(app('dash')['DASHBOARD_PATH'] . '/no-permission') :
-                $LoadResource->update($id);
+                $LoadResource->update(request(),$id);
         });
         // multi delete
         Route::delete('/resource/' . $resourceData['resourceName'] . '/multi/delete', function () use ($LoadResource, $resourceData) {
