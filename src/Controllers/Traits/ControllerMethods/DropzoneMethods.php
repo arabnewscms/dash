@@ -2,6 +2,7 @@
 namespace Dash\Controllers\Traits\ControllerMethods;
 use Dash\Models\FileManagerModel;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Http\Request;
 use Storage;
 
 trait DropzoneMethods {
@@ -20,7 +21,7 @@ trait DropzoneMethods {
 	}
 
 	// Multi upload with dropzone
-	public function multi_upload() {
+	public function multi_upload(Request $request) {
 		if (request()->ajax()) {
 			$rules     = [];
 			$dz_attach = request('dz_attach_param_name');
@@ -28,7 +29,7 @@ trait DropzoneMethods {
 				$rules[$dz_attach] = "";
 			}
 
-			$this->validate(request(), $rules, [], [
+			$request->validate( $rules, [], [
 					$dz_attach => 'dropzone attach',
 
 				]);

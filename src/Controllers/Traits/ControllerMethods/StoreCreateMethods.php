@@ -1,6 +1,7 @@
 <?php
 namespace Dash\Controllers\Traits\ControllerMethods;
 use Dash\RenderableElements\Element;
+use Illuminate\Http\Request;
 
 trait StoreCreateMethods {
 
@@ -31,7 +32,7 @@ trait StoreCreateMethods {
         return request()->ajax() && request('create_with_inline')? $view->render():$view;
 	}
 
-	public function store() {
+	public function store(Request $request) {
 
 		$rules    = [];
 		$nicename = [];
@@ -51,7 +52,7 @@ trait StoreCreateMethods {
 		}
 
 		// Validate Requests
-		$this->validate(request(), $rules, [], $nicename);
+		$request->validate( $rules, [], $nicename);
 
 		$model = new $this->resource['model'];
 
