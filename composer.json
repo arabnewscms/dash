@@ -18,8 +18,8 @@
         }
     ],
     "require": {
-        "jeremeamia/superclosure": "^2.0",
-        "stancl/tenancy": "^3.0"
+        "jeremeamia/superclosure": "*",
+        "stancl/tenancy": "*"
     },
     "license": "MIT",
     "autoload": {
@@ -32,7 +32,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.1.98.x-dev"
+            "dev-master": "1.1.99.x-dev"
         },
         "laravel": {
             "providers": [
@@ -41,7 +41,7 @@
             "aliases": {}
         }
     },
-    "version": "1.1.98",
+    "version": "1.1.99",
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
