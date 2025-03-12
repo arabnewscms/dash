@@ -18,8 +18,9 @@
         }
     ],
     "require": {
-        "jeremeamia/superclosure": "*",
-        "stancl/tenancy": "*"
+        "opis/closure": "^4.3",
+        "stancl/tenancy": "^3.9"
+
     },
     "license": "MIT",
     "autoload": {

@@ -1,5 +1,9 @@
+<?php
+   use function Opis\Closure\{serialize, unserialize};
+?>
 @if ($field['show_rules']['showInUpdate'])
     @php
+
         // $selected = isset($field['selected'])?$field['selected']:null;
         $belongsToMany = $field['attribute'];
         $col = isset($field['columnWhenUpdate']) ? $field['columnWhenUpdate'] : $field['column'];
@@ -30,7 +34,7 @@
                 $fetchSelected = $model->{$selectName}->pluck('id')->toArray();
             @endphp
             <select id="{{ $selectName . request('ajax_loading', '') }}" {{-- search Select2 Query Start --}}
-                query="{{ isset($field['query']) && !empty($field['query']) ? (new SuperClosure\Serializer())->serialize($field['query']) : null }}"
+                query="{{ isset($field['query']) && !empty($field['query']) ? serialize($field['query']) : null }}"
                 model="{{ $resource::$model }}" searchKey="{{ $resource::$title }}" {{-- search Select2 Query End --}} multiple
                 name="{{ $selectName }}[]"
                 class="form-select select2-show-search custom-select
@@ -57,9 +61,9 @@
 
             @if (method_exists($resource::$model, 'trashed'))
                 <div class="form-check form-switch pt-1">
-                    <input class="form-check-input" style="width: 26px;height: 14px;margin-left: -2.5em;" type="checkbox" role="switch"
-                        name="withTrashed{{ $belongsToManyName }}" value="yes" checked
-                        id="withTrashed{{ $belongsToManyName }}">
+                    <input class="form-check-input" style="width: 26px;height: 14px;margin-left: -2.5em;"
+                        type="checkbox" role="switch" name="withTrashed{{ $belongsToManyName }}" value="yes"
+                        checked id="withTrashed{{ $belongsToManyName }}">
                     <label class="form-check-label text-dark"
                         for="withTrashed{{ $belongsToManyName }}">{{ __('dash::dash.withTrashed') }}</label>
                 </div>

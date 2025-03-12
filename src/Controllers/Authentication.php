@@ -3,6 +3,7 @@
 namespace Dash\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class Authentication extends Controller
 {
@@ -12,9 +13,9 @@ class Authentication extends Controller
         return view('dash::login');
     }
 
-    public function loggedin()
+    public function loggedin(Request $request)
     {
-        $data = $this->validate(request(), [
+        $data = $request->validate([
             'email'    => 'required|email',
             'password' => 'required',
         ], [], [
@@ -24,7 +25,7 @@ class Authentication extends Controller
 
         $remember = !empty(request('remember_me')) ? true : false;
         $data['account_type'] = 'admin';
-    
+
         if (auth()->guard('dash')->attempt($data, $remember)) {
             return redirect(app('dash')['DASHBOARD_PATH'] . '/dashboard');
         } else {

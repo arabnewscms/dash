@@ -1,6 +1,6 @@
 <?php
 namespace Dash\Controllers\Traits\ControllerMethods;
-use SuperClosure\Serializer;
+use function Opis\Closure\{serialize, unserialize};
 use Storage;
 
 
@@ -208,7 +208,7 @@ trait PrepareFieldToStoreAndUpdateWithRules {
 					// Get Serializer path
 					if (is_array($field['value']['path'])) {
 						if ($field['value']['path']['serialize']) {
-							$path = $unserializedPath = (new Serializer())->unserialize($field['value']['path']['source']);
+							$path =  unserialize($field['value']['path']['source']);
 							// passing the model data after created
 							$path = $path($model);
 						} else {
@@ -227,7 +227,7 @@ trait PrepareFieldToStoreAndUpdateWithRules {
 
 			// When Store Data unserialize Closure to do in there code
 			if (isset($field['whenStore']) && !empty($field['whenStore'])) {
-				$unserialized = (new Serializer())->unserialize($field['whenStore']);
+				$unserialized = unserialize($field['whenStore']);
 				// passing the model data after created
 				$data = $unserialized($model);
 				if (is_string($data)) {
@@ -320,7 +320,7 @@ trait PrepareFieldToStoreAndUpdateWithRules {
 					// Get Serializer path
 					if (is_array($field['value']['path'])) {
 						if ($field['value']['path']['serialize']) {
-							$path = $unserializedPath = (new Serializer())->unserialize($field['value']['path']['source']);
+							$path =  unserialize($field['value']['path']['source']);
 							// passing the model data after created
 							$path = $path($model);
 						} else {
@@ -346,7 +346,7 @@ trait PrepareFieldToStoreAndUpdateWithRules {
 
 			// When Store Data unserialize Closure to do in there code
 			if (isset($field['whenUpdate']) && !empty($field['whenUpdate'])) {
-				$unserialized = (new Serializer())->unserialize($field['whenUpdate']);
+				$unserialized = unserialize($field['whenUpdate']);
 				// passing the model data after created
 				$data = $unserialized($model);
 				if (is_string($data)) {

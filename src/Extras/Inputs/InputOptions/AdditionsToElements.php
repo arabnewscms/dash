@@ -1,6 +1,6 @@
 <?php
 namespace Dash\Extras\Inputs\InputOptions;
-use SuperClosure\Serializer;
+use function Opis\Closure\{serialize, unserialize};
 
 trait AdditionsToElements {
 
@@ -109,7 +109,7 @@ function value($value = null) {
 	public static function path($path) {
 		static ::$input[static ::$index-1]['path'] = [
 			'serialize' => is_object($path),
-			'source'    => is_object($path)?(new Serializer())->serialize($path):$path,
+			'source'    => is_object($path)?serialize($path):$path,
 		];
 
 		return static ::fillData();
@@ -120,7 +120,7 @@ function value($value = null) {
 	 * @return renderable self::data
 	 */
 	public static function whenStore($whenStore) {
-		static ::$input[static ::$index-1]['whenStore'] = (new Serializer())->serialize($whenStore);
+		static ::$input[static ::$index-1]['whenStore'] = serialize($whenStore);
 		return static ::fillData();
 	}
 
@@ -130,7 +130,7 @@ function value($value = null) {
 	 * @return renderable self::data
 	 */
 	public static function whenUpdate($whenUpdate) {
-		static ::$input[static ::$index-1]['whenUpdate'] = (new Serializer())->serialize($whenUpdate);
+		static ::$input[static ::$index-1]['whenUpdate'] = serialize($whenUpdate);
 		return static ::fillData();
 	}
 	/**

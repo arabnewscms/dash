@@ -2,7 +2,7 @@
 
 namespace Dash\Extras\Metrics\Contracts\Traits;
 
-use SuperClosure\Serializer;
+use function Opis\Closure\{serialize, unserialize};
 
 trait StructureMethods
 {
@@ -127,7 +127,7 @@ trait StructureMethods
             $updateResult =   is_object($value) ? $value($this->result) : $value;
             $this->result =   $updateResult;
 
-            $this->query_format = (new Serializer())->serialize(function ($v) use ($value) {
+            $this->query_format = serialize(function ($v) use ($value) {
                 return $value($v);
             });
             //dd($this->query_format);

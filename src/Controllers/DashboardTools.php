@@ -1,7 +1,7 @@
 <?php
 namespace Dash\Controllers;
 use App\Http\Controllers\Controller;
-use SuperClosure\Serializer;
+use function Opis\Closure\{serialize, unserialize};
 
 //use Dash\Controllers\FileUploader;
 
@@ -34,7 +34,7 @@ class DashboardTools extends Controller {
 			if (class_exists($model)) {
 
 				if (!empty(request('model_query'))) {
-					$unserialized = (new Serializer())->unserialize(request('model_query'));
+					$unserialized = unserialize(request('model_query'));
 					$model        = $unserialized($model);
 				} else {
 					$model = $model::query();
@@ -72,7 +72,7 @@ class DashboardTools extends Controller {
 		$queryStr  = request('queryStr');
 		if (!empty($queryStr)) {
 			//dd($queryStr,$model);
-			$unserialized = (new Serializer())->unserialize($queryStr);
+			$unserialized = unserialize($queryStr);
 			//$eloquent     = is_string($unserialized($model))?$unserialized($model):$unserialized($model);
 			$eloquent     = $unserialized($model);
 		} else {
@@ -148,7 +148,7 @@ class DashboardTools extends Controller {
 
         if (!empty(request('query'))) {
             $result        =   $result->where(function($q){
-                $unserialized  = (new Serializer())->unserialize(request('query'));
+                $unserialized  = unserialize(request('query'));
                 return $unserialized($q);
             });
         }else{
@@ -169,7 +169,7 @@ class DashboardTools extends Controller {
         }
 
         if (!empty(request('query_format'))) {
-          $unserialized_query_format  = (new Serializer())->unserialize(request('query_format'));
+          $unserialized_query_format  = unserialize(request('query_format'));
           $output = $unserialized_query_format($res_value);
         // dd("{$output}");
           return response([

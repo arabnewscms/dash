@@ -1,5 +1,9 @@
+<?php
+   use function Opis\Closure\{serialize, unserialize};
+?>
 @if ($field['show_rules']['showInUpdate'])
     @php
+
         $selected = isset($field['selected']) ? $field['selected'] : null;
         $belongsToAttr = $field['attribute'];
         $checkIfNeedChildData =
@@ -46,8 +50,7 @@
                 @endphp
             @endif
             <select id="{{ $belongsToAttr . request('ajax_loading', '') }}" {{-- search Select2 Query Start --}}
-                model="{{ $resource::$model }}"
-                query="{{ isset($field['query']) ? (new SuperClosure\Serializer())->serialize($field['query']) : null }}"
+                model="{{ $resource::$model }}" query="{{ isset($field['query']) ? serialize($field['query']) : null }}"
                 searchKey="{{ $resource::$title }}"
                 column = "{{ isset($field['fromParent']) && isset($field['fromParent']['parent']) && isset($field['fromParent']['column']) ? $field['fromParent']['column'] : null }}"
                 parent="{{ isset($field['fromParent']) && isset($field['fromParent']['parent']) ? $field['fromParent']['parent'] : null }}"
@@ -90,9 +93,9 @@
             @if (!isset($field['fromParent']) && !isset($field['fromParent']['parent']) && !isset($field['fromParent']['column']))
                 @if (method_exists($resource::$model, 'trashed'))
                     <div class="form-check form-switch pt-1">
-                        <input class="form-check-input" style="width: 26px;height: 14px;margin-left: -2.5em;" type="checkbox" role="switch"
-                            name="withTrashed{{ $belongsToAttr }}" checked value="yes"
-                            id="withTrashed{{ $belongsToAttr }}">
+                        <input class="form-check-input" style="width: 26px;height: 14px;margin-left: -2.5em;"
+                            type="checkbox" role="switch" name="withTrashed{{ $belongsToAttr }}" checked
+                            value="yes" id="withTrashed{{ $belongsToAttr }}">
                         <label class="form-check-label text-dark"
                             for="withTrashed{{ $belongsToAttr }}">{{ __('dash::dash.withTrashed') }}</label>
                     </div>
@@ -166,10 +169,10 @@
                                     // console.log(formId);
                                     var nextColumn = $(
                                         '#{{ $belongsToAttr . request('ajax_loading', '') }}'
-                                        ).attr('column');
+                                    ).attr('column');
                                     var nextParent = $(
                                         '#{{ $belongsToAttr . request('ajax_loading', '') }}'
-                                        ).attr('parent');
+                                    ).attr('parent');
                                     var nextParentValue = $(nextParent + ' option:selected')
                                         .val();
                                     if (nextColumn != '' && nextParentValue != '') {
@@ -196,7 +199,7 @@
                     if (parentValue != '') {
                         // load Data By Parent
                         get_{{ $belongsToAttr }}_data(parentValue,
-                        '{{ $field['fromParent']['column'] }}');
+                            '{{ $field['fromParent']['column'] }}');
                     }
                 });
             @if (!empty(request('relationField')) && !empty(request('relationField.' . $field['fromParent']['parent'])))

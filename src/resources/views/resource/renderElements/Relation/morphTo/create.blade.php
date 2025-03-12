@@ -1,5 +1,9 @@
+<?php
+   use function Opis\Closure\{serialize, unserialize};
+?>
 @if ($field['show_rules']['showInCreate'])
     @php
+
         $selected = isset($field['selected']) ? $field['selected'] : null;
         $morphName = $field['attribute'];
         $col = isset($field['columnWhenCreate']) ? $field['columnWhenCreate'] : $field['column'];
@@ -58,16 +62,16 @@
             </label>
 
             <select id="{{ $morphNameModel }}" model="{{ $resource::$model }}"
-                query="{{ isset($query) ? (new SuperClosure\Serializer())->serialize($query) : null }}"
-                searchKey="{{ $resource::$title }}" name="{{ $morphNameModel }}"
+                query="{{ isset($query) ? serialize($query) : null }}" searchKey="{{ $resource::$title }}"
+                name="{{ $morphNameModel }}"
                 class="form-select ps-2 {{ $morphNameModel }} {{ $errors->has($morphNameModel) ? 'is-invalid' : '' }}">
                 <option selected value>{{ $morphTitleModel }}</option>
             </select>
 
             @if (method_exists($resource::$model, 'trashed'))
                 <div class="form-check form-switch pt-1">
-                    <input class="form-check-input" style="width: 26px;height: 14px;margin-left: -2.5em;" type="checkbox" role="switch"
-                        name="withTrashed{{ $morphNameModel }}" value="yes"
+                    <input class="form-check-input" style="width: 26px;height: 14px;margin-left: -2.5em;"
+                        type="checkbox" role="switch" name="withTrashed{{ $morphNameModel }}" value="yes"
                         {{ old('withTrashed' . $morphNameModel) ? 'checked' : '' }}
                         id="withTrashed{{ $morphNameModel }}">
                     <label class="form-check-label text-dark"

@@ -1,5 +1,10 @@
+<?php
+   use function Opis\Closure\{serialize, unserialize};
+?>
 @if ($field['show_rules']['showInCreate'])
-    @php
+
+@php
+
         $selected = isset($field['selected']) ? $field['selected'] : null;
         $belongsToAttr = $field['attribute'];
 
@@ -41,7 +46,7 @@
 
             <select id="{{ $belongsToAttr }}{{ request('ajax_loading', '') }}" {{-- search Select2 Query Start --}}
                 model="{{ $resource::$model }}"
-                query="{{ isset($field['query']) ? (new SuperClosure\Serializer())->serialize($field['query']) : null }}"
+                query="{{ isset($field['query']) ? serialize($field['query']) : null }}"
                 searchKey="{{ $resource::$title }}"
                 column="{{ isset($field['fromParent']) && isset($field['fromParent']['parent']) && isset($field['fromParent']['column']) ? $field['fromParent']['column'] : null }}"
                 parent="{{ isset($field['fromParent']) && isset($field['fromParent']['parent']) ? $field['fromParent']['parent'] : null }}"

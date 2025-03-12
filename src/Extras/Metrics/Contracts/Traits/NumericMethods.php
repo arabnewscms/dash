@@ -2,7 +2,9 @@
 
 namespace Dash\Extras\Metrics\Contracts\Traits;
 
-use SuperClosure\Serializer;
+use function Opis\Closure\{serialize, unserialize};
+// use function serialize;
+// use Opis\Closure\SerializableClosure;
 
 trait NumericMethods
 {
@@ -10,7 +12,8 @@ trait NumericMethods
     public function count($count, $query = null)
     {
         if (!empty($query)) {
-            $this->query = (new Serializer())->serialize($query);
+
+            $this->query = serialize($query);
 
             $this->count = $count::where($query)->count();
         } else {
@@ -26,7 +29,7 @@ trait NumericMethods
     {
         $total = $progress::count();
         if (!empty($query)) {
-            $this->query = (new Serializer())->serialize($query);
+            $this->query = serialize($query);
             $pending = $progress::where($query)->count();
         } else {
             $pending = $progress::count();
@@ -40,7 +43,7 @@ trait NumericMethods
         // $this->sum = $sum::sum($col);
 
         if (!empty($query)) {
-            $this->query = (new Serializer())->serialize($query);
+            $this->query = serialize($query);
             $this->sum = $sum::where($query)->sum($col);
         } else {
             $this->sum = $sum::sum($col);
@@ -55,7 +58,7 @@ trait NumericMethods
     public function average($average, $col = 'id', $query = null)
     {
         if (!empty($query)) {
-            $this->query = (new Serializer())->serialize($query);
+            $this->query = serialize($query);
             $this->average = [$average::where($query)->sum($col), $average::where($query)->count()];
         } else {
             $this->average = [$average::sum($col), $average::count()];
