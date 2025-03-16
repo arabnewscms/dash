@@ -1,5 +1,6 @@
 <?php
 namespace Dash\Extras\Resources;
+
 use Illuminate\Support\Facades\Route;
 
 class ExecBlankPages
@@ -70,7 +71,7 @@ class ExecBlankPages
         });
 
         Route::post('/page/' . $PageData['RouteName'] . '/{id}', function ($id) use ($PageData) {
-            return $PageData['save']::save($id);
+            return $PageData['save']::save(request(), $id);
         });
     }
 }

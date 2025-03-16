@@ -2,7 +2,7 @@
 
 namespace Dash;
 
-use Illuminate\Validation\Validator;
+use Illuminate\Http\Request;
 
 abstract class Pages
 {
@@ -62,15 +62,11 @@ abstract class Pages
      * Update Data In Model
      * @return redirect object
      */
-    public static function save($id)
+    public static function save(Request $request, $id)
     {
 
         if (!empty(static::rule()) && count(static::rule()) > 0) {
-            $validate = Validator::make(request()->all(), static::rule());
-            $validate->setAttributeNames(static::attribute());
-            if ($validate->fails()) {
-                return back()->withInput()->withErrors($validate->messages());
-            }
+            $request->validate(static::rule(), static::attribute());
         }
 
         $data = static::$model::find($id);
