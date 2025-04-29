@@ -157,7 +157,7 @@ class ExecResources
         Route::put('/resource/' . $resourceData['resourceName'] . '/{id}', function ($id) use ($LoadResource, $resourceData) {
             return !$LoadResource->pagesRules(auth()->guard('dash')->user())['update'] ?
                 redirect(app('dash')['DASHBOARD_PATH'] . '/no-permission') :
-                $LoadResource->update(request(),$id);
+                $LoadResource->update(request(), $id);
         });
         // multi delete
         Route::delete('/resource/' . $resourceData['resourceName'] . '/multi/delete', function () use ($LoadResource, $resourceData) {
@@ -199,7 +199,7 @@ class ExecResources
         });
         // dropzone
         Route::post('/resource/' . $resourceData['resourceName'] . '/upload/multi', function () use ($LoadResource, $resourceData) {
-            return $LoadResource->multi_upload();
+            return $LoadResource->multi_upload(request());
         });
 
         // dropzone
