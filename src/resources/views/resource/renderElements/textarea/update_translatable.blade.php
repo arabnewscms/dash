@@ -47,7 +47,7 @@
                         class="form-control
 		{{ isset($field['hideIf']) && $field['hideIf'] ? 'd-none' : '' }}
 		{{ $inputID }} {{ $errors->has($inputName) ? 'is-invalid' : '' }}"
-                        id="{{ $inputName }}">{{ method_exists($model, 'translate') ? $model->translate($key)->{$field['attribute']} : $model->{$field['attribute']} }}</textarea>
+                        id="{{ $inputName }}">{{ method_exists($model, 'translate') ? $model?->translate($key)?->{$field['attribute']} : $model->{$field['attribute']} }}</textarea>
 
 
                     {!! isset($field['help']) ? $field['help'] : '' !!}
