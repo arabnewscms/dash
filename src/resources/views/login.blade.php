@@ -45,7 +45,8 @@
     <script src="{{ url('dashboard/assets/dash/fonts/fontawesome-free-6.2.0-web/js/all.min.js') }}"></script>
     <!--fontawesome-free-6.2.0 Js End-->
     <style>
-       .authentication .desktop-logo, .authentication .desktop-dark {
+        .authentication .desktop-logo,
+        .authentication .desktop-dark {
             height: 16rem;
         }
     </style>
@@ -74,8 +75,12 @@
                         </div>
                         <p class="h5 fw-semibold mb-2 text-center mt-2">@lang('dash::dash.login')</p>
                         {{-- <p class="mb-4 text-muted op-7 fw-normal text-center">Welcome back Jhon !</p> --}}
+
+                        @php
+                            $dashboardPath = trim(str_replace('.', '/', app('dash')['DASHBOARD_PATH']), '/');
+                        @endphp
                         <form class="card-body pt-3" id="login" method="post"
-                            action="{{ route(app('dash')['DASHBOARD_PATH'] . '.login') }}">
+                            action="{{ url($dashboardPath . '/login') }}">
                             @csrf
                             <input type="hidden" name="lang" value="{{ request('lang') }}" />
                             <div class="row gy-3">
