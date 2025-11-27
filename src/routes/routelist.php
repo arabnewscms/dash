@@ -17,10 +17,10 @@ Route::post('select2/load/data', [DashboardTools::class, 'dynamic_select2_search
 Route::post('get/statistics', [DashboardTools::class, 'get_statistics']);
 Route::post('gui/update/now', [GUIUpdate::class, 'gui_update_now']);
 
-Route::get('/', fn() => redirect(auth()->guard('dash')->check() ? $DASHBOARD_PATH . '/dashboard' : $DASHBOARD_PATH . '/login'));
+Route::get('/', fn () => redirect(auth()->guard('dash')->check() ? $DASHBOARD_PATH . '/dashboard' : $DASHBOARD_PATH . '/login'));
 /////////////////////////// Guest Loggedin ////////////////////
 Route::get('login', [Authentication::class, 'index'])->middleware([\Dash\Middleware\DashGuest::class]);
-Route::post('login', [Authentication::class, 'loggedin'])->name($DASHBOARD_PATH . '.login')->middleware([\Dash\Middleware\DashGuest::class]);
+Route::post('login', [Authentication::class, 'loggedin'])->name($DASHBOARD_PATH . '.login.submit')->middleware([\Dash\Middleware\DashGuest::class]);
 /////////////////////////// Guest Loggedin ////////////////////
 
 Route::get('change/language/{lang}', [Dashboard::class, 'changeLanguage']);
@@ -54,4 +54,4 @@ Route::middleware([\Dash\Middleware\DashAuth::class])->group(
         // to load specific model with morphTo , belongsTo End
     }
 );
-    /////////////////////////// Auth Links ////////////////////
+/////////////////////////// Auth Links ////////////////////
