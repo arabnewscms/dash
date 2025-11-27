@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
 use Dash\Controllers\Authentication;
 use Dash\Controllers\Dashboard;
@@ -20,7 +21,9 @@ Route::post('gui/update/now', [GUIUpdate::class, 'gui_update_now']);
 Route::get('/', fn () => redirect(auth()->guard('dash')->check() ? $DASHBOARD_PATH . '/dashboard' : $DASHBOARD_PATH . '/login'));
 /////////////////////////// Guest Loggedin ////////////////////
 Route::get('login', [Authentication::class, 'index'])->middleware([\Dash\Middleware\DashGuest::class]);
-Route::post('login', [Authentication::class, 'loggedin'])->name($DASHBOARD_PATH . '.login.submit')->middleware([\Dash\Middleware\DashGuest::class]);
+Route::post('login', [Authentication::class, 'loggedin'])
+//->name($DASHBOARD_PATH . '.login.submit')
+->middleware([\Dash\Middleware\DashGuest::class]);
 /////////////////////////// Guest Loggedin ////////////////////
 
 Route::get('change/language/{lang}', [Dashboard::class, 'changeLanguage']);
@@ -38,7 +41,7 @@ Route::get('/resource', function () {
 /////////////////////////// Auth Links ////////////////////
 Route::middleware([\Dash\Middleware\DashAuth::class])->group(
     function () {
-        Route::any('logout', [Authentication::class, 'logout'])->name(app('dash')['DASHBOARD_PATH'] . '.logout');
+        Route::any('logout', [Authentication::class, 'logout']);//->name(app('dash')['DASHBOARD_PATH'] . '.logout');
 
         Route::get('dashboard', [Dashboard::class, 'index']);
         Route::get('no-permission', [Dashboard::class, 'no_permission']);
