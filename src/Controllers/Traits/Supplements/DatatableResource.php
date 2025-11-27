@@ -51,7 +51,9 @@ trait DatatableResource
     public function resourcesRelatedWithRelations()
     {
         foreach ($this->resource['fields'][0]::$input as $input) {
-            if (!isset($input['resource'])) continue;
+            if (!isset($input['resource'])) {
+                continue;
+            }
 
             $resourceName = resourceShortName($input['resource']);
             $attribute    = explode('.', $input['attribute'])[0];
@@ -93,11 +95,15 @@ trait DatatableResource
      */
     public function filters(Builder $table)
     {
-        if (empty(request('filters'))) return $table;
+        if (empty(request('filters'))) {
+            return $table;
+        }
 
         $decode = json_decode(request('filters'), true);
         foreach ($decode as $filter) {
-            if (empty($filter['name']) || !isset($filter['value'])) continue;
+            if (empty($filter['name']) || !isset($filter['value'])) {
+                continue;
+            }
 
             $dateRange = dash_check_range_date_input($filter['value']);
             $column = $filter['name'];
@@ -111,7 +117,7 @@ trait DatatableResource
                 }
             } elseif (strtotime($value) !== false) {
                 $table->whereDate($column, $value);
-            } else {
+            } elseif (!empty($column) && !empty($value)) {
                 $table->where($column, $value);
             }
         }
@@ -125,12 +131,16 @@ trait DatatableResource
     public function searchable(Builder $table)
     {
         $searchValue = trim(request('search.value') ?? '');
-        if (empty($searchValue) || count($this->search) < 1) return $table;
+        if (empty($searchValue) || count($this->search) < 1) {
+            return $table;
+        }
 
         $table->where(function ($q) use ($searchValue) {
             foreach ($this->search as $column) {
-                if (!empty(app($this->resource['model'])->translatedAttributes) &&
-                    in_array($column, app($this->resource['model'])->translatedAttributes)) {
+                if (
+                    !empty(app($this->resource['model'])->translatedAttributes) &&
+                    in_array($column, app($this->resource['model'])->translatedAttributes)
+                ) {
                     $q->orWhereTranslationLike($column, "%{$searchValue}%");
                 } else {
                     $q->orWhere($column, 'LIKE', "%{$searchValue}%");
@@ -147,7 +157,9 @@ trait DatatableResource
     public function searchWithRelation(Builder $table)
     {
         $searchValue = trim(request('search.value') ?? '');
-        if (empty($searchValue) || empty($this->searchWithRelation)) return $table;
+        if (empty($searchValue) || empty($this->searchWithRelation)) {
+            return $table;
+        }
 
         foreach ($this->searchWithRelation as $relation => $columns) {
             $table->whereHas($relation, function ($q) use ($columns, $searchValue) {
@@ -165,7 +177,9 @@ trait DatatableResource
      */
     public function orderable(Builder $q)
     {
-        if (!request()->has('order.0.column')) return $q;
+        if (!request()->has('order.0.column')) {
+            return $q;
+        }
 
         $multiSelectRecord = $this->resource['multiSelectRecord'] ? 1 : 0;
         $colIndex = request('order.0.column') - $multiSelectRecord;
