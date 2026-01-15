@@ -207,13 +207,25 @@ trait DatatableResource
         // Filters
         $table = $this->filters($table);
 
-        // Eager load relationships for searchWithRelation
-        if (!empty($this->searchWithRelation)) {
-            $table->with(array_keys($this->searchWithRelation));
+        // Eager load dynamic relationships to avoid N+1
+        if (!empty(request('loadRelationResources'))) {
+            $getRelationResources = explode(',', request('loadRelationResources'));
+            foreach ($getRelationResources as $resource) {
+                if (!empty($resource)) {
+                    $table = $table->with([$resource => function ($q) use ($resource) {
+                        $this->registerForeignKeyNames($q, $resource);
+                    }]);
+                }
+            }
         }
 
-        // Search
-        $table = $this->searchWithRelation($table);
+        // Search on relations (to avoid N+1 in search)
+        if (!empty($this->searchWithRelation)) {
+            $table = $table->with(array_keys($this->searchWithRelation));
+            $table = $this->searchWithRelation($table);
+        }
+
+        // Search main table
         $table = $this->searchable($table);
 
         // Order
