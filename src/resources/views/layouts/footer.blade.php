@@ -113,67 +113,47 @@
     <!--language Modal Popup-->
 @endif
 
+
 <!-- Footer Start -->
 <footer class="footer mt-auto py-3 bg-white text-center">
     <div class="container">
-
         @if (!empty(config('dash.copyright')))
-        <a href="{{ config('dash.copyright.link') }}"
-            class="font-weight-bold"
-            target="_blank">{!! config('dash.copyright.copyright_text') !!}</a>
-    @else
-    <span class="text-muted">   Copyright © <span id="year"></span> ,
-        Dashboard <span class="fa fa-heart text-danger"></span> by
-        <a href="https://phpdash.com" class="font-weight-bold"
-            target="_blank">
-            <span class="fw-semibold text-primary text-decoration-underline"> phpdash.com </span>
-        </a>
-    </span>
-    @endif
-
+            <a href="{{ config('dash.copyright.link') }}" class="font-weight-bold"
+                target="_blank">{!! config('dash.copyright.copyright_text') !!}</a>
+        @else
+            <span class="text-muted">Copyright © <span id="year"></span>,
+                Dashboard <span class="fa fa-heart text-danger"></span> by
+                <a href="https://phpdash.com" class="font-weight-bold" target="_blank">
+                    <span class="fw-semibold text-primary text-decoration-underline"> phpdash.com </span>
+                </a>
+            </span>
+        @endif
     </div>
 </footer>
-<!-- Footer End -->
 
 </div>
 
-
-<!-- Scroll To Top -->
 <div class="scrollToTop">
     <span class="arrow"><i class="fa-solid fa-chevron-up fs-20"></i></span>
 </div>
 <div id="responsive-overlay"></div>
-<!-- Scroll To Top -->
 
-<!-- Popper JS -->
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="{{ url('dashboard/assets/dash/libs/@popperjs/core/umd/popper.min.js') }}"></script>
-
-<!-- Bootstrap JS -->
-<script src="{{ url('dashboard/assets/dash/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
-<!-- Defaultmenu JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
 <script src="{{ url('dashboard/assets/dash/js/defaultmenu.min.js') }}"></script>
-
-<!-- Node Waves JS-->
 <script src="{{ url('dashboard/assets/dash/libs/node-waves/waves.min.js') }}"></script>
-
-<!-- Sticky JS -->
 <script src="{{ url('dashboard/assets/dash/js/sticky.js') }}"></script>
-
-<!-- Simplebar JS -->
 <script src="{{ url('dashboard/assets/dash/libs/simplebar/simplebar.min.js') }}"></script>
 <script src="{{ url('dashboard/assets/dash/js/simplebar.js') }}"></script>
-
-<!-- Color Picker JS -->
 <script src="{{ url('dashboard/assets/dash/libs/@simonwep/pickr/pickr.es5.min.js') }}"></script>
-
-<!-- Custom-Switcher JS -->
 <script src="{{ url('dashboard/assets/dash/js/custom-switcher.min.js') }}"></script>
-
-<!-- Custom JS -->
 <script src="{{ url('dashboard/assets/dash/js/custom.js') }}"></script>
-
-<script src="{{ url('dashboard/assets/dash/libs/select2-4-1-0/js/select2_4.0.13.min.js') }}" defer></script>
 
 <script>
     @if (!empty(request('relationField')))
@@ -182,6 +162,24 @@
         @endforeach
     @endif
 </script>
+
+<script>
+    $(document).ready(function() {
+        $.fn.modal.Constructor.prototype.enforceFocus = function() {
+            var that = this;
+            $(document).on('focusin.modal', function(e) {
+                if ($(e.target).hasClass('select2-input')) {
+                    return true;
+                }
+                if (that.$element[0] !== e.target && !that.$element.has(e.target).length) {
+                    that.$element.focus();
+                }
+            });
+        };
+    });
+</script>
+
+@stack('js')
 
 {{-- <style type="text/css">
     @if (app()->getLocale() == 'ar')
@@ -217,23 +215,3 @@
         display: block;
     }
 </style> --}}
-@stack('js')
-
-<script>
-    $(document).ready(function() {
-        {{--  This belong to fix the select2 when active search input  --}}
-        $.fn.modal.Constructor.prototype.enforceFocus = function() {
-            var that = this;
-            $(document).on('focusin.modal', function(e) {
-                if ($(e.target).hasClass('select2-input')) {
-                    return true;
-                }
-
-                //console.log('focusin worked');
-                if (that.$element[0] !== e.target && !that.$element.has(e.target).length) {
-                    that.$element.focus();
-                }
-            });
-        };
-    });
-</script>
